@@ -1,0 +1,18 @@
+#task-form {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.task-form-input {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.task-form-actions {
+    align-self: flex-end;
+    display: flex;
+    gap: 0.5rem;
+}

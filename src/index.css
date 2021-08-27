@@ -13,3 +13,8 @@ html {
   font-family: sans-serif;
   font-size: 16px;
 }
+
+main {
+  display: flex;
+  gap: 0.5rem
+}

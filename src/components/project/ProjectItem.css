@@ -1,0 +1,7 @@
+
+.project-item {
+    padding: 0.25rem;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}

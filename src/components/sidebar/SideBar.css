@@ -1,0 +1,21 @@
+.sidebar {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.project-filter {
+  display: flex;
+  flex-direction: column;
+}
+
+.completed-project-list,
+.project-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.colapse-wrapper-body {
+    padding: 1rem;
+}

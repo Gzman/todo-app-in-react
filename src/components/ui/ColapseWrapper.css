@@ -1,0 +1,8 @@
+
+.colapse-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.colapse-wrapper-body { 
+    padding: 0.5rem/* Was hab ich getan */}

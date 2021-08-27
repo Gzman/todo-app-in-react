@@ -1,0 +1,15 @@
+
+.content {
+    padding: 1rem;
+}
+
+.project-view, .project-view-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.project-controlls {
+    display: flex;
+    gap: 0.5rem;
+}

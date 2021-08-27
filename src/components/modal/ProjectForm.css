@@ -1,0 +1,17 @@
+#project-form {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.project-form-input {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.project-form-actions {
+  align-self: flex-end;
+  display: flex;
+  gap: 0.5rem;
+}
