@@ -7,7 +7,7 @@ const ColapseWrapper = ({ classes, title, children, setColapsed = false }) => {
         <div className={`${classes} colapse-wrapper`}>
             <div
                 className="colapse-wrapper-header"
-                onClick={(e) => setIsColapsed(isColapsed => !isColapsed)}
+                onClick={() => setIsColapsed(isColapsed => !isColapsed)}
             >
                 <h3>{title}</h3>
             </div>

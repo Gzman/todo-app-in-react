@@ -1,15 +1,53 @@
-import React from "react"
+import React, { useState } from "react"
+import { useTaskFormValidation } from "../../hooks/useTaskFormValidation"
 import "./TaskForm.css"
 
-const TaskForm = ({ }) => {
+const TaskForm = ({ handleInSubmit, handleInCancel, taskToEdit }) => {
+    const [name, setName] = useState(taskToEdit ? taskToEdit.name : "");
+    const [description, setDescription] = useState(taskToEdit ? taskToEdit.description : "");
+    const [dueDate, setDueDate] = useState(taskToEdit?.dueDate ? taskToEdit.dueDate : "");
+    const [priority, setPriority] = useState(taskToEdit ? taskToEdit.priority : "Low");
+    const { errors, resetErrors, validate } = useTaskFormValidation(name, dueDate);
+
+    const reset = () => {
+        setName("");
+        setDescription("");
+        setDueDate("");
+        setPriority("Low");
+        resetErrors();
+    }
+
+    const cancel = (e) => {
+        e.preventDefault();
+        reset();
+        handleInCancel && handleInCancel();
+    }
+
+    const submit = (e) => {
+        e.preventDefault();
+        const isValid = validate();
+        if (isValid) {
+            handleInSubmit && handleInSubmit(
+                name,
+                description,
+                dueDate !== "" ? dueDate : null,
+                priority,
+            );
+            reset();
+        }
+    }
+
     return (
         <form id="task-form">
             <div className="task-form-input">
                 <label htmlFor="task-form-name">Name</label>
+                {errors.nameNotSet && <p className="error">{errors.nameNotSet}</p>}
                 <input
                     type="text"
                     id="task-form-name"
                     maxLength="50"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                 />
             </div>
             <div className="task-form-input">
@@ -18,26 +56,41 @@ const TaskForm = ({ }) => {
                     type="text"
                     id="task-form-description"
                     maxLength="180"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
                 />
             </div>
             <div className="task-form-input">
                 <label htmlFor="task-form-date">Due date</label>
+                {errors.dateSetInPast && <p className="error">{errors.dateSetInPast}</p>}
                 <input
                     type="date"
                     id="task-form-date"
+                    value={dueDate}
+                    onChange={(e) => setDueDate(e.target.value)}
                 />
             </div>
             <div className="task-form-input">
                 <label htmlFor="task-form-priority">Priority</label>
-                <select id="task-form-priority">
+                <select
+                    id="task-form-priority"
+                    onChange={(e) => setPriority(e.target.value)}
+                >
                     <option>Low</option>
                     <option>Medium</option>
                     <option>High</option>
                 </select>
             </div>
             <div className="task-form-actions">
-                <button type="submit" className="task-form-ok-btn">Add</button>
-                <button className="task-form-cancel-btn">Cancel</button>
+                <button
+                    type="submit"
+                    className="task-form-ok-btn"
+                    onClick={submit}
+                >{taskToEdit ? "Save" : "Create"}</button>
+                <button
+                    className="task-form-cancel-btn"
+                    onClick={cancel}
+                >Cancel</button>
             </div>
         </form>
     )
