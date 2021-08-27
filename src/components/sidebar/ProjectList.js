@@ -5,7 +5,7 @@ import "./SideBar.css"
 
 const ProjectList = ({ projects }) => {
     return (
-        <ColapseWrapper classes="project-list" title="Projects">
+        <ColapseWrapper classes="project-list" title="Projects" setColapsed={true}>
             {
                 projects?.map((project) =>
                     <ProjectItem

@@ -4,5 +4,10 @@
     flex-direction: column;
 }
 
+.colapse-wrapper-header {
+    cursor: pointer;
+}
+
 .colapse-wrapper-body { 
-    padding: 0.5rem/* Was hab ich getan */}
+    padding: 0.5rem;
+}
