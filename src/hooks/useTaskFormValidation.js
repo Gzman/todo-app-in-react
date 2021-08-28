@@ -1,15 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const useTaskFormValidation = (name, dueDate) => {
-    const initialErrorState = {
+    const [errors, setErrors] = useState({
         nameNotSet: "",
         dateSetInPast: "",
-    }
-    const [errors, setErrors] = useState(initialErrorState);
+    });
 
-    const resetErrors = () => {
-        setErrors(initialErrorState);
+    const isMount = useRef(true);
+    const onlyOnUpdate = (callback) => {
+        if (isMount.current) {
+            isMount.current = false;
+        } else {
+            callback();
+        }
     }
+
+    useEffect(() => {
+        onlyOnUpdate(validate);
+    }, [name, dueDate]);
 
     const validate = () => {
         let nameNotSet = "";
@@ -33,7 +41,6 @@ const useTaskFormValidation = (name, dueDate) => {
 
     return {
         errors,
-        resetErrors,
         validate,
     }
 }

@@ -7,19 +7,10 @@ const TaskForm = ({ handleInSubmit, handleInCancel, taskToEdit }) => {
     const [description, setDescription] = useState(taskToEdit ? taskToEdit.description : "");
     const [dueDate, setDueDate] = useState(taskToEdit?.dueDate ? taskToEdit.dueDate : "");
     const [priority, setPriority] = useState(taskToEdit ? taskToEdit.priority : "Low");
-    const { errors, resetErrors, validate } = useTaskFormValidation(name, dueDate);
-
-    const reset = () => {
-        setName("");
-        setDescription("");
-        setDueDate("");
-        setPriority("Low");
-        resetErrors();
-    }
+    const { errors, validate } = useTaskFormValidation(name, dueDate);
 
     const cancel = (e) => {
         e.preventDefault();
-        reset();
         handleInCancel && handleInCancel();
     }
 
@@ -33,7 +24,6 @@ const TaskForm = ({ handleInSubmit, handleInCancel, taskToEdit }) => {
                 dueDate !== "" ? dueDate : null,
                 priority,
             );
-            reset();
         }
     }
 

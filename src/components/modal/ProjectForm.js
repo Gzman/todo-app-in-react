@@ -4,16 +4,10 @@ import "./ProjectForm.css"
 
 const ProjectForm = ({ handleInSubmit, handleInCancel }) => {
     const [name, setName] = useState("");
-    const { errors, resetErrors, validate } = useProjectFormValidation(name);
-
-    const reset = () => {
-        setName("");
-        resetErrors();
-    }
+    const { errors, validate } = useProjectFormValidation(name);
 
     const cancel = (e) => {
         e.preventDefault();
-        reset();
         handleInCancel && handleInCancel();
     }
 
@@ -22,9 +16,9 @@ const ProjectForm = ({ handleInSubmit, handleInCancel }) => {
         const isValid = validate();
         if (isValid) {
             handleInSubmit && handleInSubmit(name);
-            reset();
         }
     }
+
     return (
         <form id="project-form">
             <div className="project-form-input">

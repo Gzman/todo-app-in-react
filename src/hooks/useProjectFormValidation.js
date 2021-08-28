@@ -1,14 +1,22 @@
-import { useState } from "react";
+import { useRef, useEffect, useState } from "react";
 
 const useProjectFormValidation = (name) => {
-    const initialErrorState = {
+    const [errors, setErrors] = useState({
         nameNotSet: "",
-    };
-    const [errors, setErrors] = useState(initialErrorState);
+    });
 
-    const resetErrors = () => {
-        setErrors(initialErrorState);
+    const isMount = useRef(true);
+    const onlyOnUpdate = (callback) => {
+        if (isMount.current) {
+            isMount.current = false;
+        } else {
+            callback();
+        }
     }
+
+    useEffect(() => {
+        onlyOnUpdate(validate);
+    }, [name]);
 
     const validate = () => {
         let nameNotSet = "";
@@ -23,7 +31,6 @@ const useProjectFormValidation = (name) => {
 
     return {
         errors,
-        resetErrors,
         validate,
     }
 }

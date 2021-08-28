@@ -7,11 +7,12 @@ const CompleteProjectList = ({ completedProjects }) => {
     return (
         <ColapseWrapper classes="complete-project-list" title="Complete">
             {
-                completedProjects && completedProjects.map((project) =>
-                    <ProjectItem
-                        name={project.name}
-                    />
-                )
+                completedProjects?.length === 0
+                    ? <div className="completed-project-list-msg">There are no completed projects</div>
+                    : completedProjects
+                        ?.map((project) =>
+                            <ProjectItem name={project.name} />
+                        )
             }
         </ColapseWrapper>
     )
