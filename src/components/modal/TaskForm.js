@@ -1,11 +1,12 @@
 import React, { useState } from "react"
 import { useTaskFormValidation } from "../../hooks/useTaskFormValidation"
+import { format } from "date-fns"
 import "./TaskForm.css"
 
 const TaskForm = ({ handleInSubmit, handleInCancel, taskToEdit }) => {
     const [name, setName] = useState(taskToEdit ? taskToEdit.name : "");
     const [description, setDescription] = useState(taskToEdit ? taskToEdit.description : "");
-    const [dueDate, setDueDate] = useState(taskToEdit?.dueDate ? taskToEdit.dueDate : "");
+    const [dueDate, setDueDate] = useState(taskToEdit?.dueDate ? format(taskToEdit.dueDate, "yyyy-MM-dd") : "");
     const [priority, setPriority] = useState(taskToEdit ? taskToEdit.priority : "Low");
     const { errors, validate } = useTaskFormValidation(name, dueDate);
 
@@ -18,10 +19,13 @@ const TaskForm = ({ handleInSubmit, handleInCancel, taskToEdit }) => {
         e.preventDefault();
         const isValid = validate();
         if (isValid) {
+            console.log("We are here in task-form");
+            console.log("Task to edit:", taskToEdit);
+            console.log("handleSubmit", handleInSubmit);
             handleInSubmit && handleInSubmit(
                 name,
                 description,
-                dueDate !== "" ? dueDate : null,
+                dueDate !== "" ? new Date(dueDate) : null,
                 priority,
             );
         }
@@ -65,6 +69,7 @@ const TaskForm = ({ handleInSubmit, handleInCancel, taskToEdit }) => {
                 <select
                     id="task-form-priority"
                     onChange={(e) => setPriority(e.target.value)}
+                    value={priority}
                 >
                     <option>Low</option>
                     <option>Medium</option>
