@@ -5,6 +5,9 @@ import { ProjectList } from "./ProjectList"
 import "./SideBar.css"
 
 const SideBar = ({ projects, selectedProjectId, setSelectedProjectId, addProject }) => {
+    const getCompleteProjects = () => {
+        return projects.filter((project) => project.tasks.length > 0 && project.tasks.every((task) => task.isComplete));
+    } 
     return (
         <div className="sidebar">
             <ProjectFilter
@@ -12,7 +15,9 @@ const SideBar = ({ projects, selectedProjectId, setSelectedProjectId, addProject
                 setSelectedProjectId={setSelectedProjectId}
             />
             <CompleteProjectList
-                completedProjects={null}
+                completedProjects={getCompleteProjects()}
+                selectedProjectId={selectedProjectId}
+                setSelectedProjectId={setSelectedProjectId}
             />
             <ProjectList
                 projects={projects}

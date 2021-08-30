@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 
-const useTaskFormValidation = (name, dueDate) => {
+const useTaskFormValidation = (name, dueDate, isEditTaskForm = false) => {
     const [errors, setErrors] = useState({
         nameNotSet: "",
         dateSetInPast: "",
@@ -25,7 +25,7 @@ const useTaskFormValidation = (name, dueDate) => {
         if (name === "") {
             nameNotSet = "Name must be entered";
         }
-        if (dueDate !== "") {
+        if (isEditTaskForm && dueDate !== "") {
             const today = new Date();
             today.setHours(0);
             if (new Date(dueDate) < today) {

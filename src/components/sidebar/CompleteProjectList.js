@@ -3,7 +3,7 @@ import { ProjectItem } from "../project/ProjectItem"
 import { ColapseWrapper } from "../ui/ColapseWrapper"
 import "./SideBar.css"
 
-const CompleteProjectList = ({ completedProjects }) => {
+const CompleteProjectList = ({ completedProjects, selectedProjectId, setSelectedProjectId }) => {
     return (
         <ColapseWrapper classes="complete-project-list" title="Complete">
             {
@@ -11,7 +11,12 @@ const CompleteProjectList = ({ completedProjects }) => {
                     ? <div className="completed-project-list-msg">There are no completed projects</div>
                     : completedProjects
                         ?.map((project) =>
-                            <ProjectItem name={project.name} />
+                            <ProjectItem 
+                            key={project.id} 
+                            name={project.name} 
+                            setAsSelected={() => setSelectedProjectId(project.id)}
+                            active={project.id === selectedProjectId}
+                            />
                         )
             }
         </ColapseWrapper>

@@ -8,7 +8,7 @@ const TaskForm = ({ handleInSubmit, handleInCancel, taskToEdit }) => {
     const [description, setDescription] = useState(taskToEdit ? taskToEdit.description : "");
     const [dueDate, setDueDate] = useState(taskToEdit?.dueDate ? format(taskToEdit.dueDate, "yyyy-MM-dd") : "");
     const [priority, setPriority] = useState(taskToEdit ? taskToEdit.priority : "Low");
-    const { errors, validate } = useTaskFormValidation(name, dueDate);
+    const { errors, validate } = useTaskFormValidation(name, dueDate, !taskToEdit);
 
     const cancel = (e) => {
         e.preventDefault();

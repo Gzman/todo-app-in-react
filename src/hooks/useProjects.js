@@ -6,7 +6,17 @@ const useProjects = () => {
         {
             id: "inbox",
             name: "Inbox",
-            tasks: [],
+            tasks: [
+                {
+                    id: "test",
+                    name:"Test",
+                    description: "A Test for edit",
+                    dueDate: new Date("2021-07-11"),
+                    priority: "Medium",
+                    isComplete: true,
+                    timestamp: Date.now(),
+                },
+            ],
         }
     ]);
 
