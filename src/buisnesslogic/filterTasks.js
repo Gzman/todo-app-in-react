@@ -1,26 +1,27 @@
-import { getWeek, getMonth } from "date-fns"
+import { format, getWeek, getMonth } from "date-fns"
+import uniqid from "uniqid"
 
 const filterTasks = (projects, filter) => {
     return projects?.reduce((filtered, project) => {
-        const filteredTasks = projects.filter(filter);
+        const filteredTasks = project.tasks.filter(filter);
         if (filteredTasks?.length) {
-            filtered.push({ ...project, tasks: filteredTasks });
+            filtered.push({ ...project, filterId: uniqid(), tasks: filteredTasks });
         }
         return filtered;
     }, []);
 }
 
-const filterTaskByText = (projects, text) => {
+const filterByText = (projects, text) => {
     const searchText = text.toLowerCase();
     return filterTasks(projects, (task) => {
         const dueDate = task.dueDate;
-        return task.title.toLowerCase().includes(searchText)
-            || (task.due && Dateformat(dueDate, "dd.MM.yyyy").includes(searchText))
+        return task.name.toLowerCase().includes(searchText)
+            || (task.dueDate && format(dueDate, "dd.MM.yyyy").includes(searchText))
             || task.priority.toLowerCase() === searchText;
     });
 }
 
-const filterTasksToday = (projects) => {
+const filterToday = (projects) => {
     return filterTasks(projects, (task) => {
         const today = new Date();
         return task.dueDate
@@ -30,19 +31,19 @@ const filterTasksToday = (projects) => {
     });
 }
 
-const filterTasksThisWeek = (projects) => {
+const filterThisWeek = (projects) => {
     return filterTasks(projects, (task) => {
         return task.dueDate && getWeek(task.dueDate) === getWeek(new Date());
     });
 }
 
-const filterTasksThisMonth = (projects) => {
+const filterThisMonth = (projects) => {
     return filterTasks(projects, (task) => {
         return task.dueDate && getMonth(task.dueDate) === getMonth(new Date());
     });
 }
 
-const filterTasksByDate = (projects, date) => {
+const filterByThisDate = (projects, date) => {
     return filterTasks(projects, (task) => {
         return task.dueDate && task.dueDate.getFullYear() === date.getFullYear()
             && task.dueDate.getMonth() === date.getMonth()
@@ -50,31 +51,31 @@ const filterTasksByDate = (projects, date) => {
     });
 }
 
-const filterCriticalTasks = (projects) => {
+const filterCritical = (projects) => {
     return filterTasks(projects, (task) => {
         return task.priority === "High";
     });
 }
 
-const filterCompletedTasks = (projects) => {
+const filterCompleted = (projects) => {
     return filterTasks(projects, (task) => {
         return task.isComplete;
     });
 }
 
-const filterAllTasks = (projects) => {
+const filterAll = (projects) => {
     return filterTasks(projects, (task) => {
         return task;
     });
 }
 
 export {
-    filterTaskByText,
-    filterCompletedTasks,
-    filterCriticalTasks,
-    filterAllTasks,
-    filterTasksToday,
-    filterTasksThisWeek,
-    filterTasksThisMonth,
-    filterTasksByDate,
+    filterByText,
+    filterCompleted,
+    filterCritical,
+    filterAll,
+    filterToday,
+    filterThisWeek,
+    filterThisMonth,
+    filterByThisDate,
 }

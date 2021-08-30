@@ -19,9 +19,6 @@ const TaskForm = ({ handleInSubmit, handleInCancel, taskToEdit }) => {
         e.preventDefault();
         const isValid = validate();
         if (isValid) {
-            console.log("We are here in task-form");
-            console.log("Task to edit:", taskToEdit);
-            console.log("handleSubmit", handleInSubmit);
             handleInSubmit && handleInSubmit(
                 name,
                 description,

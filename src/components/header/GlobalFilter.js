@@ -1,14 +1,18 @@
 import React from "react"
 import "./Header.css"
 
-const GlobalFilter = ({}) => {
+const GlobalFilter = ({ filterTasksByText, filterAllTasks, filterCriticalTasks, filterCompletedTasks }) => {
     return (
         <div className="global-filter">
-            <input className="global-filter-text" type="text" />
+            <input
+                className="global-filter-text"
+                type="text"
+                onChange={(e) => filterTasksByText(e.target.value)}
+            />
             <div className="global-filter-actions">
-                <button className="global-filter-complete-btn">Complete</button>
-                <button className="global-filter-critical-btn">Critical</button>
-                <button className="global-filter-all-btn">All</button>
+                <button className="global-filter-complete-btn" onClick={filterCompletedTasks}>Complete</button>
+                <button className="global-filter-critical-btn" onClick={filterCriticalTasks}>Critical</button>
+                <button className="global-filter-all-btn" onClick={filterAllTasks}>All</button>
             </div>
         </div>
     )

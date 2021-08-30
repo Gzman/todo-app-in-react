@@ -3,11 +3,16 @@ import { Logo } from "./Logo"
 import { GlobalFilter } from "./GlobalFilter"
 import "./Header.css"
 
-const Header = ({ }) => {
+const Header = ({ filterTasksByText, filterAllTasks, filterCriticalTasks, filterCompletedTasks }) => {
     return (
         <div className="header">
             <Logo />
-            <GlobalFilter />
+            <GlobalFilter
+                filterTasksByText={filterTasksByText}
+                filterAllTasks={filterAllTasks}
+                filterCriticalTasks={filterCriticalTasks}
+                filterCompletedTasks={filterCompletedTasks}
+            />
         </div>
     )
 }

@@ -2,7 +2,8 @@ import React from "react"
 import { ProjectItem } from "../project/ProjectItem"
 import "./SideBar.css"
 
-const ProjectFilter = ({ selectedProjectId, setSelectedProjectId }) => {
+const ProjectFilter = ({ selectedProjectId, setSelectedProjectId, timeTaskFilter }) => {
+    const { filterTasksToday, filterTasksThisWeek, filterTasksThisMonth } = timeTaskFilter;
     return (
         <div className="project-filter">
             <ProjectItem
@@ -10,9 +11,15 @@ const ProjectFilter = ({ selectedProjectId, setSelectedProjectId }) => {
                 active={selectedProjectId === "inbox"}
                 setAsSelected={() => setSelectedProjectId("inbox")}
             />
-            <button className="project-filter-today">Today</button>
-            <button className="project-filter-week">Week</button>
-            <button className="project-filter-month">Month</button>
+            <button className="project-filter-today" onClick={filterTasksToday}>
+                Today
+            </button>
+            <button className="project-filter-week" onClick={filterTasksThisWeek}>
+                Week
+            </button>
+            <button className="project-filter-month" onClick={filterTasksThisMonth}>
+                Month
+            </button>
         </div>
     )
 }
