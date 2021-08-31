@@ -1,33 +1,51 @@
 /* Simple CSS Reset  */
+:root {
+  --black: #030303;
+  --active: #030303;
+  --inactive: #909090;
+  --light-grey: rgb(230, 230, 230);
+  --slightly-ligther-grey: rgb(242,242,242);
+  --grey: #ccc;
+  --grey-li: #d3d3d3;
+  --lighter-grey: #f9f9f9;
+}
+
 *,
 *::after,
 *::before {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
 }
 
-/* button {
-  padding: 0.5rem 0.75rem 0.5rem 0.75rem;
-  border: 0.2rem solid gray;
-  color: gray;
+button, input, select {
+  padding: 0.5rem 0.75rem;
+  border: 0.125rem solid var(--inactive);
+  border-radius: 0.33rem;
+}
+
+button {
+  color: var(--active);
   background-color: transparent;
   cursor: pointer;
   font-weight: 500;
 }
 
 button:hover {
-  border-color: black;
+  border-color: var(--active);
 }
 
 button:active {
-  transform: scale(0.98);
-} */
+  border-color: var(--active);
+  background-color: var(--slightly-ligther-grey);
+  transform: scale(0.99);
+}
 
 html {
   font-family: sans-serif;
   font-size: 16px;
+  color: var(--black);
 }
 
 body {

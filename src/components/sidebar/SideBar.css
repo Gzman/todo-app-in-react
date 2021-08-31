@@ -1,8 +1,10 @@
 .sidebar {
+  height: 100%;
   padding: 1rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  background-color: var(--lighter-grey);
 }
 
 .project-filter {
@@ -11,14 +13,23 @@
 }
 
 .project-filter > button {
-  font-size: 1rem;
-  padding: 0.5rem;
-  text-align: start;
-  display: flex;
-  justify-content: space-between;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  background-color: transparent;
+    padding: 0.5rem 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    font-weight: 500;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.project-item:hover {
+    background-color: var(--light-grey);
+}
+
+.project-item:active {
+    background-color: var(--light-grey);
 }
 
 .project-filter > button:hover {

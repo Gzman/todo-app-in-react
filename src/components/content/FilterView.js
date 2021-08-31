@@ -2,7 +2,7 @@ import React from "react"
 import { ProjectItem } from "../project/ProjectItem"
 import { TaskItems } from "../task/TaskItems"
 
-const FilterView = ({ filtered, selectProject }) => {
+const FilterView = ({ filtered, selectProject, editTask, removeTask }) => {
     if (!filtered) {
         return null;
     }
@@ -24,8 +24,8 @@ const FilterView = ({ filtered, selectProject }) => {
                             <TaskItems
                                 key={`${project.id}${project.filterId}`}
                                 project={project}
-                                editTask={(...args) => console.log("FilterView", ...args)}
-                                removeTask={(...args) => console.log("FilterView", ...args)}
+                                editTask={editTask}
+                                removeTask={removeTask}
                             />
                         </div>
                     )

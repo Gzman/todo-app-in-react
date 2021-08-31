@@ -11,7 +11,7 @@ const ProjectFilter = ({ selectedProjectId, selectProject, timeTaskFilter }) => 
                 active={selectedProjectId === "inbox"}
                 setAsSelected={() => selectProject("inbox")}
             />
-            <button className="project-filter-today" onClick={filterTasksToday}>
+            <button className="project-filter-today" onClick={() => {filterTasksToday(); selectProject("")}}>
                 Today
             </button>
             <button className="project-filter-week" onClick={filterTasksThisWeek}>

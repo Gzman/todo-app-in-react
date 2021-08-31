@@ -1,4 +1,5 @@
 #project-form {
+  width: 360px;
   padding: 0.5rem;
   display: flex;
   flex-direction: column;
@@ -7,11 +8,19 @@
 
 .project-form-input {
   display: flex;
+  flex-direction: column;
+  justify-items: center;
   gap: 0.5rem;
 }
 
 .project-form-actions {
+  margin-top: 0.75rem;
   align-self: flex-end;
   display: flex;
   gap: 0.5rem;
+}
+
+.error {
+  font-size: 0.95rem;
+  color: darkred;
 }

@@ -1,11 +1,12 @@
 .App {
-  min-height: 100vh;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
 }
 
 main {
-  flex-grow: 1;
+  height: 100%;
+  flex: 1 1 auto;
   display: grid;
   grid-template-columns: 180px auto;
   gap: 1rem;

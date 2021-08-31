@@ -3,12 +3,18 @@
     padding: 0.5rem;
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
     justify-content: center;
     border-radius: 0.5rem;
+    background-color: var(--slightly-ligther-grey);
 }
 
 .task-item:hover {
-    background-color: rgb(250,250,250);
+    background-color: var(--light-grey);
+}
+
+.task-item:active {
+    background-color: var(--light-grey);
 }
 
 .task-item-normal-view {
@@ -18,6 +24,7 @@
     align-items: center;
     word-break: normal;
 }
+
 
 .task-item-name {
     cursor: pointer;
@@ -29,10 +36,8 @@
     background-color: white;
 }
 
-
-.task-item-actions {
-    display: flex;
-    gap: 0.5rem;
+.task-item-edit-btn, .task-item-remove-btn {
+    padding: 0.25rem 0.5rem 0.25rem 0.5rem;
 }
 
 .Low {

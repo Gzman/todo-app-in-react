@@ -16,7 +16,7 @@ const CompleteProjectList = ({ projects, selectedProjectId, selectProject }) => 
         return null;
     }
     return (
-        <ColapseWrapper classes="complete-project-list" title="Complete">
+        <ColapseWrapper classes="complete-project-list" title="Completed">
             {
                 completeProjects
                     ?.map((project) =>

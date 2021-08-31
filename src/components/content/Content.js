@@ -12,7 +12,7 @@ const Content = ({ renderProjectView, setRenderProjectView, projects, selectedPr
 
     useEffect(() => {
         setRenderProjectView(true)
-    }, [projects]);
+    }, [selectedProjectId]);
 
     return (
         <div className="content">
@@ -32,6 +32,8 @@ const Content = ({ renderProjectView, setRenderProjectView, projects, selectedPr
                         <FilterView
                             filtered={filtered}
                             selectProject={selectProject}
+                            editTask={editTask}
+                            removeTask={removeTask}
                         />
                     )
             }

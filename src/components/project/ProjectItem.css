@@ -1,8 +1,20 @@
-
 .project-item {
-    padding: 0.25rem;
-    display: flex;
-    justify-content: space-between;
-    border-radius: 0.5rem;
-    cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.project-item:hover {
+  background-color: var(--light-grey);
+}
+
+.project-item:active {
+  background-color: var(--light-grey);
+}
+
+.active {
+  background-color: var(--slightly-ligther-grey);
 }

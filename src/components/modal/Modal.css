@@ -21,15 +21,17 @@
   flex-direction: column;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   background-color: white;
+  border-radius: 0.33rem;
 }
 
 .modal-header {
-  padding: 0.5rem;
+  padding: 1rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-color: gray;
-  color: white;
+  background-color: var(--light-grey);
+  border-top-left-radius: 0.33rem;
+  border-top-right-radius: 0.33rem;
 }
 
 .modal-close {

@@ -47,6 +47,7 @@ const TaskForm = ({ handleInSubmit, handleInCancel, taskToEdit }) => {
                     type="text"
                     id="task-form-description"
                     maxLength="180"
+                    rows="4"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                 />

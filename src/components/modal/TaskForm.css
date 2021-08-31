@@ -1,4 +1,5 @@
 #task-form {
+    width: 360px;
     padding: 0.5rem;
     display: flex;
     flex-direction: column;
@@ -12,7 +13,13 @@
 }
 
 .task-form-actions {
+    margin-top: 0.75rem;
     align-self: flex-end;
     display: flex;
     gap: 0.5rem;
+}
+
+.error {
+    font-size: 0.95rem;
+    color: darkred;
 }
