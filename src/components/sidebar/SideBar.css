@@ -10,6 +10,21 @@
   flex-direction: column;
 }
 
+.project-filter > button {
+  font-size: 1rem;
+  padding: 0.5rem;
+  text-align: start;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.project-filter > button:hover {
+  background-color: gainsboro;
+}
+
 .completed-project-list,
 .project-list {
   display: flex;
@@ -17,5 +32,5 @@
 }
 
 .colapse-wrapper-body {
-    padding: 1rem;
+  padding: 1rem;
 }

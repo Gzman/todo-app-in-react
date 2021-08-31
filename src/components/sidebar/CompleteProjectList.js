@@ -10,7 +10,7 @@ const getCompleteProjects = (projects) => {
         && project.tasks.every((task) => task.isComplete));
 }
 
-const CompleteProjectList = ({ projects, selectedProjectId, setSelectedProjectId }) => {
+const CompleteProjectList = ({ projects, selectedProjectId, selectProject }) => {
     const completeProjects = getCompleteProjects(projects);
     if (completeProjects?.length === 0) {
         return null;
@@ -23,7 +23,7 @@ const CompleteProjectList = ({ projects, selectedProjectId, setSelectedProjectId
                         <ProjectItem
                             key={project.id}
                             name={project.name}
-                            setAsSelected={() => setSelectedProjectId(project.id)}
+                            setAsSelected={() => selectProject(project.id)}
                             active={project.id === selectedProjectId}
                         />
                     )

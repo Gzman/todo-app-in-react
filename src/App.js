@@ -1,9 +1,10 @@
+import React, { useState } from "react"
 import { Header } from "./components/header/Header"
 import { SideBar } from "./components/sidebar/Sidebar"
 import { Content } from "./components/content/Content"
 import { useProjects } from "./hooks/useProjects"
 import { useFilteredProjects } from "./hooks/useFilteredProjects"
-import { useState } from "react";
+import "./App.css"
 
 function App() {
   const {
@@ -18,11 +19,19 @@ function App() {
     sortTasksAfterDate,
     sortTasksAfterPriority,
     sortTasksAfterComplete,
+    currentProjectId,
+    setCurrentProjectId,
   } = useProjects();
 
   const [
-    selectedProjectId,
-    setSelectedProjectId] = useState("inbox");
+    renderProjectView,
+    setRenderProjectView
+  ] = useState(true);
+
+  const selectProject = (id) => {
+    setRenderProjectView(true);
+    setCurrentProjectId(id);
+  }
 
   const {
     filtered,
@@ -46,8 +55,8 @@ function App() {
       <main>
         <SideBar
           projects={projects}
-          selectedProjectId={selectedProjectId}
-          setSelectedProjectId={setSelectedProjectId}
+          selectedProjectId={currentProjectId}
+          selectProject={selectProject}
           addProject={addProject}
           timeTaskFilter={{
             filterTasksToday,
@@ -56,8 +65,11 @@ function App() {
           }}
         />
         <Content
+          setRenderProjectView={setRenderProjectView}
+          renderProjectView={renderProjectView}
           projects={projects}
-          selectedProjectId={selectedProjectId}
+          selectedProjectId={currentProjectId}
+          selectProject={selectProject}
           removeProject={removeProject}
           addTask={addTask}
           editTask={editTask}

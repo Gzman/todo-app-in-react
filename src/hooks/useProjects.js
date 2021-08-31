@@ -1,28 +1,56 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { useLocalStorage } from "./useLocalStorage"
 import uniqid from "uniqid"
 
 const useProjects = () => {
-    const [projects, setProjects] = useState([
+    const initialProjects = [
         {
             id: "inbox",
             name: "Inbox",
             tasks: [
                 {
-                    id: "test",
-                    name:"Test",
-                    description: "A Test for edit",
+                    id: "inboxTask",
+                    name: "Test",
+                    description: "Hier steht Blödsinn",
                     dueDate: new Date("2021-07-11"),
                     priority: "Medium",
                     isComplete: true,
                     timestamp: Date.now(),
                 },
-            ],
+            ]
         }
-    ]);
+    ]
+    const [projects, setProjects] = useState([]);
+    const { load } = useLocalStorage("projects", projects, initialProjects);
+
+    const [currentProjectId, setCurrentProjectId] = useState("inbox");
+
+    useEffect(() => {
+        const savedProjects = load();
+        setProjects(
+            savedProjects !== null
+                ? savedProjects.map((project) => (
+                    {
+                        ...project,
+                        tasks: project.tasks.map((task) => (
+                            {
+                                ...task,
+                                dueDate: task.dueDate ? new Date(task.dueDate) : null,
+                            }
+                        )),
+                    }
+                ))
+                : initialProjects
+        );
+    }, []);
 
     const addProject = (name) => {
-        setProjects(projects =>
-            [...projects, { id: uniqid(), name, tasks: [] }],
+        setProjects(
+            projects => {
+                const id = uniqid();
+                setCurrentProjectId(id);
+                return [...projects, { id, name, tasks: [] }];
+            }
         );
     }
 
@@ -37,7 +65,9 @@ const useProjects = () => {
 
     const removeProject = (id) => {
         if (id === "inbox") return;
-        setProjects(projects => projects.filter((project) => project.id !== id));
+        setProjects(projects =>
+            projects.filter((project) => project.id !== id)
+        );
     }
 
     const addTask = (projectId, name, description, dueDate, priority) => {
@@ -108,11 +138,11 @@ const useProjects = () => {
         setProjects(
             projects => projects.map((project) =>
                 project.id === projectId
-                ? {
-                    ...project, tasks: [...project.tasks]
-                    .sort((a, b) => a.timestamp - b.timestamp)
-                }
-                : project
+                    ? {
+                        ...project, tasks: [...project.tasks]
+                            .sort((a, b) => a.timestamp - b.timestamp)
+                    }
+                    : project
             )
         )
     }
@@ -184,6 +214,8 @@ const useProjects = () => {
 
     return {
         projects,
+        currentProjectId,
+        setCurrentProjectId,
         addProject,
         editProject,
         removeProject,

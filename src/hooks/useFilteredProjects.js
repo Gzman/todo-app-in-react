@@ -9,52 +9,60 @@ import {
 } from "../buisnesslogic/filterTasks"
 
 const useFilteredProjects = (projects) => {
-    const [filtered, setFiltered] = useState([]);
-    // better so: const [filtered, setFiltered] = useState({
-        // projects: [],
-        // filterType: "",
-    // });
+    const [filtered, setFiltered] = useState(
+        {
+            projects: [],
+            filterName: "",
+        }
+    )
 
     const filterTasksByText = (text) => {
-        setFiltered(
-            filterByText(projects, text),
-        )
+        setFiltered(filtered => ({
+            projects: filterByText(projects, text),
+            filterName: `Search: ${text}`,
+        }));
     }
 
     const filterAllTasks = () => {
-        setFiltered(
-            [...projects],
-        )
+        setFiltered(filtered => ({
+            projects: [...projects],
+            filterName: "All Tasks",
+        }));
     }
 
     const filterCriticalTasks = () => {
-        setFiltered(
-            filterCritical(projects),
-        )
+        setFiltered(filtered => ({
+            projects: filterCritical(projects),
+            filterName: "Critical Tasks",
+        }));
     }
 
     const filterCompletedTasks = () => {
-        setFiltered(
-            filterCompleted(projects),
-        );
+        setFiltered( filtered => ({
+            projects: filterCompleted(projects),
+            filterName: "Completed Tasks"
+        }));
     }
 
     const filterTasksToday = () => {
-        setFiltered(
-            filterToday(projects),
-        )
+        setFiltered(filtered => ({
+            projects: filterToday(projects),
+            filterName: "Tasks Today",
+        }));
     }
 
     const filterTasksThisWeek = () => {
-        setFiltered(
-            filterThisWeek(projects),
-        );
+        setFiltered(filtered => ({
+            projects: filterThisWeek(projects),
+            filterName: "Tasks this Week",
+        }));
     }
 
     const filterTasksThisMonth = () => {
-        setFiltered(
-            filterThisMonth(projects),
-        );
+        setFiltered( filtered => ({
+            projects: filterThisMonth(projects),
+            filterName: "Tasks this month",
+        }));
     }
 
     return {

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { format } from "date-fns"
 import { Modal } from "../modal/Modal"
 import { useRenderModal } from "../../hooks/useRenderModal"
@@ -7,9 +7,10 @@ import "./TaskItem.css"
 
 const TaskItem = ({ name, description, dueDate, priority, isComplete, editTask, removeTask, renderEditTaskModal }) => {
     // const { shouldRenderModal, renderModal, closeModal } = useRenderModal();
+    const [renderDetailView, setRenderDetailView] = useState(false);
     return (
         <>
-            <div className="task-item">
+            <div className={`task-item ${priority}`}>
                 <div className="task-item-normal-view">
                     <input
                         type="checkbox"
@@ -23,7 +24,7 @@ const TaskItem = ({ name, description, dueDate, priority, isComplete, editTask, 
                             e.target.checked,
                         )}
                     />
-                    <p className="task-item-name">{name}</p>
+                    <p className="task-item-name" onClick={() => setRenderDetailView(render => !render)}>{name}</p>
                     <p className="task-item-date">{dueDate ? format(dueDate, "dd.MM.yyyy") : ""}</p>
                     <button className="task-item-edit-btn" onClick={renderEditTaskModal}>
                         Edit
@@ -32,9 +33,12 @@ const TaskItem = ({ name, description, dueDate, priority, isComplete, editTask, 
                         Remove
                     </button>
                 </div>
-                <div className="task-item-detail-view">
-                    <p className="task-item-description">{description}</p>
-                </div>
+                {
+                    renderDetailView && (description.length > 0)
+                    && <div className="task-item-detail-view">
+                        <p className="task-item-description">{description}</p>
+                    </div>
+                }
             </div>
         </>
     )

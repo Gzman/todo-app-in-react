@@ -6,7 +6,7 @@ import { ColapseWrapper } from "../ui/ColapseWrapper"
 import { useRenderModal } from "../../hooks/useRenderModal"
 import "./SideBar.css"
 
-const ProjectList = ({ projects, selectedProjectId, setSelectedProjectId, addProject }) => {
+const ProjectList = ({ projects, selectedProjectId, selectProject, addProject }) => {
     const { shouldRenderModal, renderModal, closeModal } = useRenderModal();
     return (
         <>
@@ -17,7 +17,7 @@ const ProjectList = ({ projects, selectedProjectId, setSelectedProjectId, addPro
                         && < ProjectItem
                             key={project.id}
                             name={project.name}
-                            setAsSelected={() => setSelectedProjectId(project.id)}
+                            setAsSelected={() => selectProject(project.id)}
                             active={project.id === selectedProjectId}
                         />
                     )

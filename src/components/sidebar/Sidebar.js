@@ -4,23 +4,23 @@ import { CompleteProjectList } from "./CompleteProjectList"
 import { ProjectList } from "./ProjectList"
 import "./SideBar.css"
 
-const SideBar = ({ projects, selectedProjectId, setSelectedProjectId, addProject, timeTaskFilter }) => {
+const SideBar = ({ projects, selectedProjectId, selectProject, addProject, timeTaskFilter }) => {
     return (
         <div className="sidebar">
             <ProjectFilter
                 selectedProjectId={selectedProjectId}
-                setSelectedProjectId={setSelectedProjectId}
+                selectProject={selectProject}
                 timeTaskFilter={timeTaskFilter}
             />
             <CompleteProjectList
                 projects={projects}
                 selectedProjectId={selectedProjectId}
-                setSelectedProjectId={setSelectedProjectId}
+                selectProject={selectProject}
             />
             <ProjectList
                 projects={projects}
                 selectedProjectId={selectedProjectId}
-                setSelectedProjectId={setSelectedProjectId}
+                selectProject={selectProject}
                 addProject={addProject}
             />
         </div>
