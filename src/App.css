@@ -6,6 +6,6 @@
 main {
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 180px auto;
+  grid-template-columns: var(--sidebar-width) auto;
   gap: 1rem;
 }

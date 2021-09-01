@@ -46,11 +46,11 @@
 }
 
 .Low {
-    border-left: 0.5rem solid green;
+    border-left: 0.5rem solid var(--green);
 }
 
 .Medium {
-    border-left: 0.5rem solid orange;
+    border-left: 0.5rem solid coral;
 }
 
 .High {

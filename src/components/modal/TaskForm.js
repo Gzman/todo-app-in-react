@@ -77,7 +77,7 @@ const TaskForm = ({ handleInSubmit, handleInCancel, taskToEdit }) => {
             <div className="task-form-actions">
                 <button
                     type="submit"
-                    className="task-form-ok-btn"
+                    className="task-form-ok-btn ok-btn"
                     onClick={submit}
                 >{taskToEdit ? "Save" : "Create"}</button>
                 <button

@@ -40,8 +40,5 @@
 
 .project-add-btn {
   margin-top: 0.5rem;
-}
-
-.colapse-wrapper-body {
-  padding: 1rem;
+  border-color: var(--green);
 }

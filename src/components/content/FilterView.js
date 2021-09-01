@@ -6,7 +6,7 @@ const FilterView = ({ filtered, selectProject, editTask, removeTask }) => {
     return (
         <div className="filter-view">
             <div className="filter-view-header">
-                <h2>{filtered.filterName}</h2>
+                <h2 className="filter-view-title">{filtered.filterName}</h2>
             </div>
             <div className="filter-view-body">
                 {

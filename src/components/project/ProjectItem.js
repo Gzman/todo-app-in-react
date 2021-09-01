@@ -8,7 +8,7 @@ const ProjectItem = ({ name, taskCount, active, isCompleted, setAsSelected }) =>
             onClick={setAsSelected}
         >
             <p className="project-item-name">{name}</p>
-            {taskCount && <p className="project-item-task-counter">{taskCount}</p>}
+            {taskCount !== null && (taskCount >  0) && <p className="project-item-task-counter">{taskCount}</p>}
         </div>
     )
 }

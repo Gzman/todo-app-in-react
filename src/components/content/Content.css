@@ -18,6 +18,14 @@
     gap: 0.5rem;
 }
 
+.new-task-btn {
+    border-color: var(--green);
+}
+
+.project-view-title, .filter-view-title {
+    padding: 0.5rem 0;
+}
+
 .filter-view-body, .project-view-body {
     display: flex;
     flex-direction: column;

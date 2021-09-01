@@ -12,7 +12,7 @@ const useLocalStorage = (key, data, initialData) => {
 
     useEffect(() => {
         onlyOnUpdate(() => localStorage.setItem(key, JSON.stringify(data)))
-    }, [data]);
+    }, [key, data]);
 
     const load = () => {
         try {

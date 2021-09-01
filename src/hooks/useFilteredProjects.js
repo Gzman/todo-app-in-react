@@ -17,8 +17,8 @@ const useFilteredProjects = (projects) => {
     )
 
     useEffect(() => {
-        console.log("useFiltered was invoked");
-    });
+        console.log("useFiltered - projects - changed")
+    }, [projects]);
 
     const filterTasksByText = (text) => {
         setFiltered(filtered => ({

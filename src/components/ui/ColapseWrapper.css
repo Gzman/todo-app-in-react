@@ -1,5 +1,6 @@
 
 .colapse-wrapper {
+    margin: 0.25rem 0;
     display: flex;
     flex-direction: column;
 }
@@ -8,6 +9,10 @@
     cursor: pointer;
 }
 
-.colapse-wrapper-body { 
-    padding: 0.5rem;
+.colapse-wrapper-title {
+    font-weight: 600;
 }
+
+.colapse-wrapper-body {
+    padding: 0.5rem;
+  }

@@ -9,6 +9,9 @@
   --grey: #ccc;
   --grey-li: #d3d3d3;
   --lighter-grey: #f9f9f9;
+  --green: #1cac78;
+
+  --sidebar-width: 220px;
 }
 
 *,
@@ -26,11 +29,20 @@ button, input, select {
   border-radius: 0.33rem;
 }
 
+select {
+  background-color: transparent;
+}
+
+
 button {
   color: var(--active);
   background-color: transparent;
   cursor: pointer;
   font-weight: 500;
+}
+
+.ok-btn {
+  border-color: var(--green);
 }
 
 button:hover {

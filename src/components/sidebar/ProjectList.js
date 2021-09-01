@@ -6,6 +6,9 @@ import { ColapseWrapper } from "../ui/ColapseWrapper"
 import { useRenderModal } from "../../hooks/useRenderModal"
 import "./SideBar.css"
 
+const isProjectCompleted = (project) => project.tasks.length > 0
+    && project.tasks.every((task) => task.isComplete);
+
 const ProjectList = ({ projects, selectedProjectId, selectProject, addProject }) => {
     const { shouldRenderModal, renderModal, closeModal } = useRenderModal();
     return (
@@ -19,7 +22,7 @@ const ProjectList = ({ projects, selectedProjectId, selectProject, addProject })
                             name={project.name}
                             setAsSelected={() => selectProject(project.id)}
                             active={project.id === selectedProjectId}
-                            isCompleted={project.tasks.every((task) => task.isComplete)}
+                            isCompleted={isProjectCompleted(project)}
                             taskCount={project.tasks.length}
                         />
                     )

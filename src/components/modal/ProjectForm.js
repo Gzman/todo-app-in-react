@@ -33,7 +33,7 @@ const ProjectForm = ({ handleInSubmit, handleInCancel }) => {
                 />
             </div>
             <div className="project-form-actions">
-                <button type="submit" className="project-form-ok-btn" onClick={submit}>Add</button>
+                <button type="submit" className="project-form-ok-btn ok-btn" onClick={submit}>Add</button>
                 <button className="project-form-cancel-btn" onClick={cancel}>Cancel</button>
             </div>
         </form>
