@@ -40,6 +40,11 @@
     padding: 0.25rem 0.5rem 0.25rem 0.5rem;
 }
 
+.completed {
+    text-decoration: line-through;
+    color: var(--light-black);
+}
+
 .Low {
     border-left: 0.5rem solid green;
 }

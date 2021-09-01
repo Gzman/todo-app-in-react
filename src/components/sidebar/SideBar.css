@@ -13,33 +13,33 @@
 }
 
 .project-filter > button {
-    padding: 0.5rem 0.75rem;
-    display: flex;
-    justify-content: space-between;
-    cursor: pointer;
-    font-weight: 500;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 500;
-}
-
-.project-item:hover {
-    background-color: var(--light-grey);
-}
-
-.project-item:active {
-    background-color: var(--light-grey);
+  padding: 0.5rem 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
 .project-filter > button:hover {
-  background-color: gainsboro;
+  background-color: var(--light-grey);
+}
+
+.project-filter > button:active {
+  background-color: var(--light-grey);
 }
 
 .completed-project-list,
 .project-list {
   display: flex;
   flex-direction: column;
+}
+
+.project-add-btn {
+  margin-top: 0.5rem;
 }
 
 .colapse-wrapper-body {

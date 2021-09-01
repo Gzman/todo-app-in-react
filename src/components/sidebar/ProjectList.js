@@ -19,6 +19,8 @@ const ProjectList = ({ projects, selectedProjectId, selectProject, addProject })
                             name={project.name}
                             setAsSelected={() => selectProject(project.id)}
                             active={project.id === selectedProjectId}
+                            isCompleted={project.tasks.every((task) => task.isComplete)}
+                            taskCount={project.tasks.length}
                         />
                     )
                 }

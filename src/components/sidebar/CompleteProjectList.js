@@ -25,6 +25,7 @@ const CompleteProjectList = ({ projects, selectedProjectId, selectProject }) => 
                             name={project.name}
                             setAsSelected={() => selectProject(project.id)}
                             active={project.id === selectedProjectId}
+                            taskCount={project.tasks.length}
                         />
                     )
             }

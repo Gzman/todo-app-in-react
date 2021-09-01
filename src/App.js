@@ -1,4 +1,5 @@
-import React, { useState } from "react"
+import React from "react"
+import { useHistory } from "react-router-dom"
 import { Header } from "./components/header/Header"
 import { SideBar } from "./components/sidebar/Sidebar"
 import { Content } from "./components/content/Content"
@@ -23,13 +24,10 @@ function App() {
     setCurrentProjectId,
   } = useProjects();
 
-  const [
-    renderProjectView,
-    setRenderProjectView
-  ] = useState(true);
+  const history = useHistory();
 
   const selectProject = (id) => {
-    setRenderProjectView(true);
+    history.replace("/");
     setCurrentProjectId(id);
   }
 
@@ -44,13 +42,19 @@ function App() {
     filterTasksThisMonth,
   } = useFilteredProjects(projects);
 
+  const handleFiltering = (filter, ...args) => {
+    history.replace("/filtered_results");
+    setCurrentProjectId("");
+    filter(...args);
+  }
+
   return (
     <div className="App">
       <Header
-        filterTasksByText={filterTasksByText}
-        filterAllTasks={filterAllTasks}
-        filterCriticalTasks={filterCriticalTasks}
-        filterCompletedTasks={filterCompletedTasks}
+        filterTasksByText={(...args) => handleFiltering(filterTasksByText, ...args)}
+        filterAllTasks={(...args) => handleFiltering(filterAllTasks, ...args)}
+        filterCriticalTasks={(...args) => handleFiltering(filterCriticalTasks, ...args)}
+        filterCompletedTasks={(...args) => handleFiltering(filterCompletedTasks, ...args)}
       />
       <main>
         <SideBar
@@ -59,14 +63,12 @@ function App() {
           selectProject={selectProject}
           addProject={addProject}
           timeTaskFilter={{
-            filterTasksToday,
-            filterTasksThisWeek,
-            filterTasksThisMonth,
+            filterTasksToday: (...args) => handleFiltering(filterTasksToday, ...args),
+            filterTasksThisWeek: (...args) => handleFiltering(filterTasksThisWeek, ...args),
+            filterTasksThisMonth: (...args) => handleFiltering(filterTasksThisMonth, ...args),
           }}
         />
         <Content
-          setRenderProjectView={setRenderProjectView}
-          renderProjectView={renderProjectView}
           projects={projects}
           selectedProjectId={currentProjectId}
           selectProject={selectProject}

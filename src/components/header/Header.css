@@ -1,5 +1,5 @@
 .header {
-  flex: 0 1 auto;
+  /* flex: 0 1 auto; */
   padding: 1rem;
   display: grid;
   grid-template-columns: 180px auto;

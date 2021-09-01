@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import {
     filterByText,
     filterCritical,
@@ -16,6 +16,10 @@ const useFilteredProjects = (projects) => {
         }
     )
 
+    useEffect(() => {
+        console.log("useFiltered was invoked");
+    });
+
     const filterTasksByText = (text) => {
         setFiltered(filtered => ({
             projects: filterByText(projects, text),
@@ -30,6 +34,8 @@ const useFilteredProjects = (projects) => {
         }));
     }
 
+
+
     const filterCriticalTasks = () => {
         setFiltered(filtered => ({
             projects: filterCritical(projects),
@@ -38,9 +44,9 @@ const useFilteredProjects = (projects) => {
     }
 
     const filterCompletedTasks = () => {
-        setFiltered( filtered => ({
+        setFiltered(filtered => ({
             projects: filterCompleted(projects),
-            filterName: "Completed Tasks"
+            filterName: "Completed Tasks",
         }));
     }
 
@@ -59,7 +65,7 @@ const useFilteredProjects = (projects) => {
     }
 
     const filterTasksThisMonth = () => {
-        setFiltered( filtered => ({
+        setFiltered(filtered => ({
             projects: filterThisMonth(projects),
             filterName: "Tasks this month",
         }));

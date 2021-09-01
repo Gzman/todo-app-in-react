@@ -10,7 +10,7 @@ const TaskItem = ({ name, description, dueDate, priority, isComplete, editTask, 
     const [renderDetailView, setRenderDetailView] = useState(false);
     return (
         <>
-            <div className={`task-item ${priority}`}>
+            <div className={`task-item ${priority} ${isComplete && "completed"}`}>
                 <div className="task-item-normal-view">
                     <input
                         type="checkbox"

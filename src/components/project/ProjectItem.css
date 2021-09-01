@@ -2,6 +2,8 @@
   padding: 0.5rem 0.75rem;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
   border-radius: 8px;
   cursor: pointer;
   font-weight: 500;
@@ -13,6 +15,11 @@
 
 .project-item:active {
   background-color: var(--light-grey);
+}
+
+.project-item-task-counter {
+  color: var(--light-black);
+  font-size: 0.9rem;
 }
 
 .active {
