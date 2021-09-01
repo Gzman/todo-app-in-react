@@ -39,6 +39,7 @@
 }
 
 .project-add-btn {
+  align-self: flex-end;
   margin-top: 0.5rem;
   border-color: var(--green);
 }

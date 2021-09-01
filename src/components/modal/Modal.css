@@ -11,6 +11,7 @@
   justify-content: center;
   align-items: flex-start;
   cursor: pointer;
+  z-index: 2;
 }
 
 .modal {
@@ -30,13 +31,15 @@
   flex-direction: row;
   justify-content: space-between;
   background-color: var(--light-grey);
+  color: var(--green);
   border-top-left-radius: 0.33rem;
   border-top-right-radius: 0.33rem;
 }
 
 .modal-close {
   cursor: pointer;
-  font-weight: 600;
+  font-weight: 700;
+  color: var(--light-black);
 }
 
 .modal-body {

@@ -5,7 +5,7 @@
   --light-black: #606060;
   --inactive: #909090;
   --light-grey: rgb(230, 230, 230);
-  --slightly-ligther-grey: rgb(236,236,236);
+  --slightly-ligther-grey: rgb(236, 236, 236);
   --grey: #ccc;
   --grey-li: #d3d3d3;
   --lighter-grey: #f9f9f9;
@@ -23,7 +23,9 @@
   /* border: 1px solid gray; */
 }
 
-button, input, select {
+button,
+input,
+select {
   padding: 0.5rem 0.75rem;
   border: 0.125rem solid var(--inactive);
   border-radius: 0.33rem;
@@ -33,7 +35,6 @@ select {
   background-color: transparent;
 }
 
-
 button {
   color: var(--active);
   background-color: transparent;
@@ -41,8 +42,12 @@ button {
   font-weight: 500;
 }
 
-.ok-btn {
+.ok-btn,
+.new-task-btn,
+.project-add-btn {
   border-color: var(--green);
+  color: var(--green);
+  font-weight: 550;
 }
 
 button:hover {

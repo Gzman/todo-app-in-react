@@ -24,6 +24,7 @@
 
 .project-view-title, .filter-view-title {
     padding: 0.5rem 0;
+    color: var(--light-black);
 }
 
 .filter-view-body, .project-view-body {
