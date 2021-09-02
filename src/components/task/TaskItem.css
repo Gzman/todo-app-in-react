@@ -1,59 +1,65 @@
-
 .task-item {
-    padding: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    justify-content: center;
-    border-radius: 0.5rem;
-    background-color: var(--ligther-grey);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: center;
+  border-radius: 0.5rem;
+  background-color: var(--ligther-grey);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .task-item:hover {
-    background-color: var(--light-grey);
+  background-color: var(--light-grey);
 }
 
 .task-item:active {
-    background-color: var(--light-grey);
+  background-color: var(--light-grey);
 }
 
 .task-item-normal-view {
-    display: grid;
-    grid-template-columns: max-content 35% 18% max-content max-content ;
-    gap: 0.5rem;
-    align-items: center;
-    word-break: normal;
+  display: grid;
+  grid-template-columns: max-content 35% 18% max-content max-content;
+  gap: 0.5rem;
+  align-items: center;
+  word-break: normal;
 }
 
-
 .task-item-name {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .task-item-detail-view {
-    padding: 0.5rem;
-    word-break: normal;
-    background-color: white;
+  padding: 0.5rem;
+  word-break: normal;
+  background-color: white;
 }
 
-.task-item-edit-btn, .task-item-remove-btn {
-    padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+.task-item-edit-btn,
+.task-item-remove-btn {
+  color: var(--inactive);
+}
+
+.task-item-edit-btn:hover,
+.task-item-remove-btn:hover,
+.task-item-edit-btn:active,
+.task-item-remove-btn:active {
+  color: var(--active);
 }
 
 .completed {
-    text-decoration: line-through;
-    color: var(--light-black);
+  text-decoration: line-through;
+  color: var(--light-black);
 }
 
 .Low {
-    border-left: 0.5rem solid var(--green);
+  border-left: 0.5rem solid var(--green);
 }
 
 .Medium {
-    border-left: 0.5rem solid coral;
+  border-left: 0.5rem solid coral;
 }
 
 .High {
-    border-left: 0.5rem solid red;
+  border-left: 0.5rem solid red;
 }

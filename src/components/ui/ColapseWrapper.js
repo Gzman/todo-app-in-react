@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io"
 import "./ColapseWrapper.css"
 
 const ColapseWrapper = ({ classes, title, children, setColapsed = false }) => {
@@ -10,6 +11,11 @@ const ColapseWrapper = ({ classes, title, children, setColapsed = false }) => {
                 onClick={() => setIsColapsed(isColapsed => !isColapsed)}
             >
                 <h4 className="colapse-wrapper-title">{title}</h4>
+                {
+                    isColapsed
+                        ? <IoIosArrowUp className="colapse-wrapper-icon" />
+                        : <IoIosArrowDown className="colapse-wrapper-icon" />
+                }
             </div>
             {
                 isColapsed &&

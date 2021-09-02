@@ -6,7 +6,17 @@
 }
 
 .colapse-wrapper-header {
+    display: flex;
+    justify-content: space-between;
     cursor: pointer;
+}
+
+.colapse-wrapper-icon {
+    color: var(--inactive);
+}
+
+.colapse-wrapper-icon:hover, .colapse-wrapper-icon:active {
+    color: var(--active);
 }
 
 .colapse-wrapper-title {
