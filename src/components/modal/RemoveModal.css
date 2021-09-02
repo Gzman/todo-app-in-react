@@ -1,0 +1,18 @@
+
+.remove-modal {
+    padding: 0.5rem;
+    width: 360px;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+}
+
+.remove-modal-ok-btn {
+    border-color: tomato;
+}
+
+.remove-modal-ok-btn:hover, .remove-modal-ok-btn:active {
+    color: tomato;
+    border-color: tomato;
+    font-weight: 550;
+}

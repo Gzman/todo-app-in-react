@@ -30,6 +30,7 @@ const ProjectView = ({ project, removeProject, addTask, editTask, removeTask, ta
                 <div className="project-view-header">
                     <h2 className="project-view-title">{project.name}</h2>
                     <ProjectControlls
+                        projectName={project.name}
                         renderNewTask={renderModal}
                         removeProject={() => removeProject(project.id)}
                         sortTasksAfterInsertion={() => sortTasksAfterInsertion(project.id)}

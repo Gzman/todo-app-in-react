@@ -41,9 +41,9 @@ const TaskItems = ({ project, editTask, removeTask }) => {
                     handleInSubmit={
                         (...args) => {
                             editTask(
-                                project.id, 
-                                currentTaskId, 
-                                ...args, 
+                                project.id,
+                                currentTaskId,
+                                ...args,
                                 getCurrentTask()?.isComplete);
                             close();
                         }

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { useHistory } from "react-router-dom"
 import { Header } from "./components/header/Header"
 import { SideBar } from "./components/sidebar/Sidebar"
@@ -27,9 +27,12 @@ function App() {
 
   const history = useHistory();
 
+  const [hideProjectMenu, setHideProjectMenu] = useState(0);
+
   const selectProject = (id) => {
     history.replace("/");
     setCurrentProjectId(id);
+    setHideProjectMenu(prev => prev + 1);
   }
 
   const {
@@ -44,6 +47,7 @@ function App() {
   } = useFilter(() => {
     history.replace("/filtered_results");
     setCurrentProjectId("");
+    setHideProjectMenu(prev => prev + 1);
   });
 
   return (
@@ -66,6 +70,7 @@ function App() {
             filterTasksThisWeek,
             filterTasksThisMonth,
           }}
+          hideProjectMenu={hideProjectMenu}
         />
         <Content
           projects={projects}

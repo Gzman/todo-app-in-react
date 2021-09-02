@@ -43,3 +43,9 @@
   margin-top: 0.5rem;
   border-color: var(--green);
 }
+
+.project-menu-btn {
+  padding: 1rem;
+  background-color: var(--lighter-grey);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
