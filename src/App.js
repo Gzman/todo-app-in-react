@@ -4,7 +4,7 @@ import { Header } from "./components/header/Header"
 import { SideBar } from "./components/sidebar/Sidebar"
 import { Content } from "./components/content/Content"
 import { useProjects } from "./hooks/useProjects"
-import { useFilteredProjects } from "./hooks/useFilteredProjects"
+import { useFilter } from "./hooks/useTaskFilter"
 import "./App.css"
 
 function App() {
@@ -32,29 +32,26 @@ function App() {
   }
 
   const {
-    filtered,
+    filter,
     filterTasksByText,
     filterAllTasks,
     filterCriticalTasks,
     filterCompletedTasks,
     filterTasksToday,
     filterTasksThisWeek,
-    filterTasksThisMonth,
-  } = useFilteredProjects(projects);
-
-  const handleFiltering = (filter, ...args) => {
+    filterTasksThisMonth
+  } = useFilter(() => {
     history.replace("/filtered_results");
     setCurrentProjectId("");
-    filter(...args);
-  }
+  });
 
   return (
     <div className="App">
       <Header
-        filterTasksByText={(...args) => handleFiltering(filterTasksByText, ...args)}
-        filterAllTasks={(...args) => handleFiltering(filterAllTasks, ...args)}
-        filterCriticalTasks={(...args) => handleFiltering(filterCriticalTasks, ...args)}
-        filterCompletedTasks={(...args) => handleFiltering(filterCompletedTasks, ...args)}
+        filterTasksByText={filterTasksByText}
+        filterAllTasks={filterAllTasks}
+        filterCriticalTasks={filterCriticalTasks}
+        filterCompletedTasks={filterCompletedTasks}
       />
       <main>
         <SideBar
@@ -63,9 +60,9 @@ function App() {
           selectProject={selectProject}
           addProject={addProject}
           timeTaskFilter={{
-            filterTasksToday: (...args) => handleFiltering(filterTasksToday, ...args),
-            filterTasksThisWeek: (...args) => handleFiltering(filterTasksThisWeek, ...args),
-            filterTasksThisMonth: (...args) => handleFiltering(filterTasksThisMonth, ...args),
+            filterTasksToday,
+            filterTasksThisWeek,
+            filterTasksThisMonth,
           }}
         />
         <Content
@@ -83,7 +80,7 @@ function App() {
             sortTasksAfterPriority,
             sortTasksAfterComplete,
           }}
-          filtered={filtered}
+          filter={filter}
         />
       </main>
     </div>

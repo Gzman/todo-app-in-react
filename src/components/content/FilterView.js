@@ -1,16 +1,17 @@
 import React from "react"
 import { ProjectItem } from "../project/ProjectItem"
 import { TaskItems } from "../task/TaskItems"
+import { filterMapping } from "../../buisnesslogic/filterTasks"
 
-const FilterView = ({ filtered, selectProject, editTask, removeTask }) => {
+const FilterView = ({ filter, projects, selectProject, editTask, removeTask }) => {
     return (
         <div className="filter-view">
             <div className="filter-view-header">
-                <h2 className="filter-view-title">{filtered.filterName}</h2>
+                <h2 className="filter-view-title">{filter.title}</h2>
             </div>
             <div className="filter-view-body">
                 {
-                    filtered?.projects?.map((project) =>
+                    filterMapping[filter.key]?.(projects, filter.arg).map((project) =>
                         project.tasks.length > 0
                         && <div className="filter-item" key={`${project.filterId}${project.id}`}>
                             <ProjectItem

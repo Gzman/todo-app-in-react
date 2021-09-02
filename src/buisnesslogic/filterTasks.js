@@ -69,6 +69,16 @@ const filterAll = (projects) => {
     });
 }
 
+const filterMapping = {
+    "filterTasksByText": filterByText,
+    "filterCriticalTasks": filterCritical,
+    "filterAllTasks": filterAll,
+    "filterCompletedTasks": filterCompleted,
+    "filterTasksToday": filterToday,
+    "filterTasksThisWeek": filterThisWeek,
+    "filterTasksThisMonth": filterThisMonth,
+}
+
 export {
     filterByText,
     filterCompleted,
@@ -78,4 +88,5 @@ export {
     filterThisWeek,
     filterThisMonth,
     filterByThisDate,
+    filterMapping,
 }

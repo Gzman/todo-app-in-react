@@ -4,7 +4,7 @@ import { ProjectView } from "./ProjectView"
 import { FilterView } from "./FilterView"
 import "./Content.css"
 
-const Content = ({ projects, selectedProjectId, selectProject, removeProject, addTask, editTask, removeTask, taskSorting, filtered }) => {
+const Content = ({ projects, selectedProjectId, selectProject, removeProject, addTask, editTask, removeTask, taskSorting, filter }) => {
     return (
         <div className="content">
             <Switch>
@@ -27,7 +27,8 @@ const Content = ({ projects, selectedProjectId, selectProject, removeProject, ad
                     exact path="/filtered_results"
                     component={() =>
                         <FilterView
-                            filtered={filtered}
+                            filter={filter}
+                            projects={projects}
                             selectProject={selectProject}
                             editTask={editTask}
                             removeTask={removeTask}

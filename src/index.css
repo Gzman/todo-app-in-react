@@ -42,14 +42,6 @@ button {
   font-weight: 500;
 }
 
-.ok-btn,
-.new-task-btn,
-.project-add-btn {
-  border-color: var(--green);
-  color: var(--green);
-  font-weight: 550;
-}
-
 button:hover {
   border-color: var(--active);
 }
@@ -58,6 +50,21 @@ button:active {
   border-color: var(--active);
   background-color: var(--slightly-ligther-grey);
   transform: scale(0.99);
+}
+
+.ok-btn,
+.new-task-btn,
+.project-add-btn {
+  border-color: var(--green);
+  color: var(--light-black);
+  font-weight: 550;
+}
+
+.ok-btn:hover,
+.new-task-btn:hover,
+.project-add-btn:hover {
+  border-color: var(--green);
+  color: var(--green);
 }
 
 html {
