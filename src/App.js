@@ -11,6 +11,7 @@ function App() {
   const {
     projects,
     addProject,
+    editProject,
     removeProject,
     addTask,
     editTask,
@@ -59,6 +60,7 @@ function App() {
           selectedProjectId={currentProjectId}
           selectProject={selectProject}
           addProject={addProject}
+          editProject={editProject}
           timeTaskFilter={{
             filterTasksToday,
             filterTasksThisWeek,

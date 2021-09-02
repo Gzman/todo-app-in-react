@@ -4,7 +4,7 @@ import { CompleteProjectList } from "./CompleteProjectList"
 import { ProjectList } from "./ProjectList"
 import "./SideBar.css"
 
-const SideBar = ({ projects, selectedProjectId, selectProject, addProject, timeTaskFilter }) => {
+const SideBar = ({ projects, selectedProjectId, selectProject, addProject, editProject, timeTaskFilter }) => {
     return (
         <div className="sidebar">
             <ProjectFilter
@@ -22,6 +22,7 @@ const SideBar = ({ projects, selectedProjectId, selectProject, addProject, timeT
                 selectedProjectId={selectedProjectId}
                 selectProject={selectProject}
                 addProject={addProject}
+                editProject={editProject}
             />
         </div>
     )

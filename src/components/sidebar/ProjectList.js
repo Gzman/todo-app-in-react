@@ -9,7 +9,7 @@ import "./SideBar.css"
 const isProjectCompleted = (project) => project.tasks.length > 0
     && project.tasks.every((task) => task.isComplete);
 
-const ProjectList = ({ projects, selectedProjectId, selectProject, addProject }) => {
+const ProjectList = ({ projects, selectedProjectId, selectProject, addProject, editProject }) => {
     const { shouldRenderModal, renderModal, closeModal } = useRenderModal();
     return (
         <>
@@ -24,6 +24,7 @@ const ProjectList = ({ projects, selectedProjectId, selectProject, addProject })
                             active={project.id === selectedProjectId}
                             isCompleted={isProjectCompleted(project)}
                             taskCount={project.tasks.length}
+                            editProject={(name) => editProject(project.id, name)}
                         />
                     )
                 }

@@ -17,6 +17,15 @@
   background-color: var(--light-grey);
 }
 
+.project-item-name-input {
+  padding: 0;
+  margin: 0;
+  font-size: 1rem;
+  width: 100%;
+  border-width: 0.1rem;
+  background-color: transparent;
+}
+
 .project-item-task-counter {
   color: var(--light-black);
   font-size: 0.9rem;

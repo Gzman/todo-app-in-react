@@ -55,6 +55,7 @@ const useProjects = () => {
     }
 
     const editProject = (id, name) => {
+        if (id === "inbox" || name === "") return;
         setProjects(projects =>
             projects.map((project) => project.id === id
                 ? { ...project, name }
