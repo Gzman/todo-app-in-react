@@ -13,7 +13,7 @@ const ProjectList = ({ projects, selectedProjectId, selectProject, addProject, e
     const { shouldRenderModal, renderModal, closeModal } = useRenderModal();
     return (
         <>
-            <ColapseWrapper classes="project-list" title="Projects" setColapsed={true}>
+            <ColapseWrapper classes="project-list" title="Projects" initialyColapsed={true}>
                 {
                     projects?.map((project) =>
                         (project.id !== "inbox")

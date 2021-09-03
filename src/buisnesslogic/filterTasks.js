@@ -63,6 +63,14 @@ const filterCompleted = (projects) => {
     });
 }
 
+const filterExpired = (projects) => {
+    return filterTasks(projects, (task) => {
+        const today = new Date();
+        today.setHours(0);
+        return task.dueDate && !task.isComplete && (task.dueDate < today);
+    });
+}
+
 const filterAll = (projects) => {
     return filterTasks(projects, (task) => {
         return task;
@@ -74,6 +82,7 @@ const filterMapping = {
     "filterCriticalTasks": filterCritical,
     "filterAllTasks": filterAll,
     "filterCompletedTasks": filterCompleted,
+    "filterExpiredTasks": filterExpired,
     "filterTasksToday": filterToday,
     "filterTasksThisWeek": filterThisWeek,
     "filterTasksThisMonth": filterThisMonth,
@@ -83,6 +92,7 @@ export {
     filterByText,
     filterCompleted,
     filterCritical,
+    filterExpired,
     filterAll,
     filterToday,
     filterThisWeek,

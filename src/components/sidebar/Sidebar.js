@@ -8,33 +8,35 @@ import "./SideBar.css"
 
 const SideBar = ({ projects, selectedProjectId, selectProject, addProject, editProject, timeTaskFilter, hideProjectMenu }) => {
     const viewPort = useCurrentViewPort();
-    const sideBar = <div className="sidebar">
-        <ProjectFilter
-            selectedProjectId={selectedProjectId}
-            selectProject={selectProject}
-            timeTaskFilter={timeTaskFilter}
-        />
-        <CompleteProjectList
-            projects={projects}
-            selectedProjectId={selectedProjectId}
-            selectProject={selectProject}
-        />
-        <ProjectList
-            projects={projects}
-            selectedProjectId={selectedProjectId}
-            selectProject={selectProject}
-            addProject={addProject}
-            editProject={editProject}
-        />
-    </div>;
+    const sideBar = (
+        <div className="sidebar">
+            <ProjectFilter
+                selectedProjectId={selectedProjectId}
+                selectProject={selectProject}
+                timeTaskFilter={timeTaskFilter}
+            />
+            <CompleteProjectList
+                projects={projects}
+                selectedProjectId={selectedProjectId}
+                selectProject={selectProject}
+            />
+            <ProjectList
+                projects={projects}
+                selectedProjectId={selectedProjectId}
+                selectProject={selectProject}
+                addProject={addProject}
+                editProject={editProject}
+            />
+        </div>
+    );
 
     return (
-        viewPort.vw > 830
+        viewPort.vw > 770
             ? sideBar
             : <ColapseWrapper
                 classes="project-menu-btn"
                 title="Projects"
-                collect={hideProjectMenu}
+                close={hideProjectMenu}
             >
                 {sideBar}
             </ColapseWrapper>
@@ -42,5 +44,3 @@ const SideBar = ({ projects, selectedProjectId, selectProject, addProject, editP
 }
 
 export { SideBar }
-
-// {...((!colapse) && { setColapsed: false })}

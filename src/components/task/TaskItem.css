@@ -4,6 +4,7 @@
   flex-direction: column;
   gap: 0.5rem;
   justify-content: center;
+  align-content: center;
   border-radius: 0.5rem;
   background-color: var(--ligther-grey);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
@@ -19,8 +20,8 @@
 
 .task-item-normal-view {
   display: grid;
-  grid-template-columns: max-content auto 10ch max-content max-content max-content;
-  gap: 1rem;
+  grid-template-columns: max-content auto 10ch max-content;
+  gap: 0.5rem;
   align-items: center;
   word-break: normal;
 }
@@ -31,6 +32,11 @@
 
 .task-item-date {
     color: var(--light-black);
+}
+
+.task-item-actions {
+  display: flex;
+  gap: 1rem;
 }
 
 .task-item-detail-view {

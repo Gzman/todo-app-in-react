@@ -16,7 +16,7 @@ const ProjectItem = ({ name, taskCount, active, isCompleted, setAsSelected, edit
                         onKeyPress={(e) => (e.key === "Enter" || e.key === "Escape") && setIsEditAble(false)}
                         onBlur={() => setIsEditAble(false)}
                         value={name}
-                        onChange={(e) => editProject(e.target.value)}
+                        onChange={(e) => e.target.value && editProject(e.target.value)}
                     />
                     : <p
                         className="project-item-name"

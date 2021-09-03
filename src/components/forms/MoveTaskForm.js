@@ -6,7 +6,7 @@ const MoveTaskForm = ({ handleInSubmit, handleInCancel, currentProjectId ,projec
 
     const submit = (e) => {
         e.preventDefault();
-        handleInSubmit(destinationProjectId);
+        destinationProjectId && handleInSubmit(destinationProjectId);
     }
 
     const cancel = () => {

@@ -1,7 +1,7 @@
 import React from "react"
 import "./Header.css"
 
-const GlobalFilter = ({ filterTasksByText, filterAllTasks, filterCriticalTasks, filterCompletedTasks }) => {
+const GlobalFilter = ({ filterTasksByText, filterAllTasks, filterCriticalTasks, filterCompletedTasks, filterExpiredTasks }) => {
     return (
         <div className="global-filter">
             <input
@@ -16,6 +16,9 @@ const GlobalFilter = ({ filterTasksByText, filterAllTasks, filterCriticalTasks, 
                 </button>
                 <button className="global-filter-critical-btn" onClick={filterCriticalTasks}>
                     Critical
+                </button>
+                <button className="global-filter-expired-btn" onClick={filterExpiredTasks}>
+                    Expired
                 </button>
                 <button className="global-filter-all-btn" onClick={filterAllTasks}>
                     All

@@ -28,12 +28,13 @@ function App() {
 
   const history = useHistory();
 
-  const [hideProjectMenu, setHideProjectMenu] = useState(0);
+  const [hideProjectMenu, setHideProjectMenu] = useState(true);
+  const closeProjectMenu = () => setHideProjectMenu(prev => !prev );
 
   const selectProject = (id) => {
     history.replace("/");
     setCurrentProjectId(id);
-    setHideProjectMenu(prev => prev + 1);
+    closeProjectMenu();
   }
 
   const {
@@ -42,13 +43,14 @@ function App() {
     filterAllTasks,
     filterCriticalTasks,
     filterCompletedTasks,
+    filterExpiredTasks,
     filterTasksToday,
     filterTasksThisWeek,
     filterTasksThisMonth
   } = useFilter(() => {
     history.replace("/filtered_results");
     setCurrentProjectId("");
-    setHideProjectMenu(prev => prev + 1);
+    closeProjectMenu();
   });
 
   return (
@@ -58,6 +60,7 @@ function App() {
         filterAllTasks={filterAllTasks}
         filterCriticalTasks={filterCriticalTasks}
         filterCompletedTasks={filterCompletedTasks}
+        filterExpiredTasks={filterExpiredTasks}
       />
       <main>
         <SideBar

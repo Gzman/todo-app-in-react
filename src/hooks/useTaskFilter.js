@@ -40,6 +40,14 @@ const useFilter = (executeOnFilter) => {
         executeOnFilter();
     }
 
+    const filterExpiredTasks = () => {
+        setFilter({
+            title: "Expired Tasks",
+            key: "filterExpiredTasks",
+        });
+        executeOnFilter();
+    }
+
     const filterTasksToday = () => {
         setFilter({
             title: "Tasks Today",
@@ -70,6 +78,7 @@ const useFilter = (executeOnFilter) => {
         filterAllTasks,
         filterCriticalTasks,
         filterCompletedTasks,
+        filterExpiredTasks,
         filterTasksToday,
         filterTasksThisWeek,
         filterTasksThisMonth,

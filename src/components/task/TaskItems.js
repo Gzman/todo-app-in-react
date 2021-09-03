@@ -37,7 +37,6 @@ const TaskItems = ({ project, projects, editTask, removeTask, moveTask }) => {
                             );
                         }}
                         renderMoveTaskModal={() => {
-                            console.log("Render Move TaskModal");
                             setCurrentTaskId(task.id);
                             setRenderMoveTaskModal(true)
                         }}

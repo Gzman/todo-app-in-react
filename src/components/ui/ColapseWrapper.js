@@ -2,15 +2,15 @@ import React, { useEffect, useState, useRef } from "react"
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io"
 import "./ColapseWrapper.css"
 
-const ColapseWrapper = ({ classes, title, children, setColapsed = false, collect }) => {
-    const [isColapsed, setIsColapsed] = useState(setColapsed);
+const ColapseWrapper = ({ classes, title, children, initialyColapsed = false, close }) => {
+    const [isColapsed, setIsColapsed] = useState(initialyColapsed);
 
     const isMount = useRef(true);
-    const onlyOnUpdate = (callback) => isMount.current?  isMount.current = false : callback();
+    const onlyOnUpdate = (callback) => isMount.current ? isMount.current = false : callback();
 
     useEffect(() => {
         onlyOnUpdate(() => setIsColapsed(false));
-    }, [collect]);
+    }, [close]);
 
     return (
         <div className={`${classes} colapse-wrapper`}>
