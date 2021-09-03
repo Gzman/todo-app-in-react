@@ -109,21 +109,27 @@ const useProjects = () => {
         );
     }
 
-    // const moveTask = (projectId, projectToId, id) => {
-    //     projects => {
-    //         const taskToMove = { ...projects.find((task) => task.id === id) };
-    //         const removedProjects = projects.map((project) =>
-    //             project.id === projectId
-    //                 ? { ...project, tasks: project.task.filter((task) => task.id !== id) }
-    //                 : project
-    //         );
-    //         return removedProjects.map((project) =>
-    //             project.id === projectToId
-    //                 ? { ...project, tasks: [...project.tasks, taskToMove] }
-    //                 : project
-    //         );
-    //     }
-    // }
+    const moveTask = (projectId, destinationId, id) => {
+        const taskToMove = {
+            ...projects.find((project) => project.id === projectId)
+                .tasks
+                .find((task) => task.id === id)
+        };
+        setProjects(
+            projects => projects.map((project) =>
+                project.id === projectId
+                    ? { ...project, tasks: project.tasks.filter((task) => task.id !== id) }
+                    : project
+            ).map((project) =>
+                project.id === destinationId
+                    ? {
+                        ...project,
+                        tasks: [...project.tasks, { ...taskToMove }]
+                    }
+                    : project
+            )
+        );
+    }
 
     const removeTask = (projectId, id) => {
         setProjects(
@@ -223,6 +229,7 @@ const useProjects = () => {
         addTask,
         editTask,
         removeTask,
+        moveTask,
         sortTasksAfterInsertion,
         sortTasksAfterName,
         sortTasksAfterDate,

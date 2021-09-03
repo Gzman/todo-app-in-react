@@ -4,7 +4,7 @@ import { ProjectView } from "./ProjectView"
 import { FilterView } from "./FilterView"
 import "./Content.css"
 
-const Content = ({ projects, selectedProjectId, selectProject, removeProject, addTask, editTask, removeTask, taskSorting, filter }) => {
+const Content = ({ projects, selectedProjectId, selectProject, removeProject, addTask, editTask, removeTask, moveTask, taskSorting, filter }) => {
     return (
         <div className="content">
             <Switch>
@@ -19,7 +19,9 @@ const Content = ({ projects, selectedProjectId, selectProject, removeProject, ad
                             addTask={addTask}
                             editTask={editTask}
                             removeTask={removeTask}
+                            moveTask={moveTask}
                             taskSorting={taskSorting}
+                            projects={projects}
                         />
                     }
                 />
@@ -32,6 +34,7 @@ const Content = ({ projects, selectedProjectId, selectProject, removeProject, ad
                             selectProject={selectProject}
                             editTask={editTask}
                             removeTask={removeTask}
+                            moveTask={moveTask}
                         />
                     }
                 />

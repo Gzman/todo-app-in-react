@@ -16,6 +16,7 @@ function App() {
     addTask,
     editTask,
     removeTask,
+    moveTask,
     sortTasksAfterInsertion,
     sortTasksAfterName,
     sortTasksAfterDate,
@@ -80,6 +81,7 @@ function App() {
           addTask={addTask}
           editTask={editTask}
           removeTask={removeTask}
+          moveTask={moveTask}
           taskSorting={{
             sortTasksAfterInsertion,
             sortTasksAfterName,

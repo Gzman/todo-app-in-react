@@ -1,11 +1,14 @@
 import React, { useState } from "react"
-import { TaskForm } from "../modal/TaskForm"
+import { TaskForm } from "../forms/TaskForm"
+import { MoveTaskForm } from "../forms/MoveTaskForm"
 import { Modal } from "../modal/Modal"
 import { TaskItem } from "../task/TaskItem"
 
-const TaskItems = ({ project, editTask, removeTask }) => {
+const TaskItems = ({ project, projects, editTask, removeTask, moveTask }) => {
     const [currentTaskId, setCurrentTaskId] = useState("");
     const [renderModal, setRenderModal] = useState(false);
+    const [renderMoveTaskModal, setRenderMoveTaskModal] = useState(false);
+    const closeMoveTaskModal = () => setRenderMoveTaskModal(false);
     const getCurrentTask = () => {
         return project.tasks.find((task) => task.id === currentTaskId);
     }
@@ -33,6 +36,11 @@ const TaskItems = ({ project, editTask, removeTask }) => {
                                 }
                             );
                         }}
+                        renderMoveTaskModal={() => {
+                            console.log("Render Move TaskModal");
+                            setCurrentTaskId(task.id);
+                            setRenderMoveTaskModal(true)
+                        }}
                     />
                 )
             }
@@ -57,6 +65,17 @@ const TaskItems = ({ project, editTask, removeTask }) => {
                             priority: getCurrentTask()?.priority,
                         }
                     }
+                />
+            </Modal>
+            <Modal title={`Move ${getCurrentTask()?.name}`} render={renderMoveTaskModal} close={closeMoveTaskModal}>
+                <MoveTaskForm
+                    handleInSubmit={(destinationId) => {
+                        moveTask(project.id, destinationId, getCurrentTask()?.id);
+                        closeMoveTaskModal();
+                    }}
+                    handleInCancel={closeMoveTaskModal}
+                    projects={projects.map((project) => ({ id: project.id, name: project.name }))}
+                    currentProjectId={project.id}
                 />
             </Modal>
         </>

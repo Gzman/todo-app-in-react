@@ -1,13 +1,12 @@
 import React, { useState } from "react"
 import { format } from "date-fns"
-import { Modal } from "../modal/Modal"
 import { RemoveModal } from "../modal/RemoveModal"
 import { useRenderModal } from "../../hooks/useRenderModal"
-import { TaskForm } from "../modal/TaskForm"
 import { FiEdit, FiDelete } from "react-icons/fi"
+import { HiOutlineSwitchHorizontal } from "react-icons/hi"
 import "./TaskItem.css"
 
-const TaskItem = ({ name, description, dueDate, priority, isComplete, editTask, removeTask, renderEditTaskModal }) => {
+const TaskItem = ({ name, description, dueDate, priority, isComplete, editTask, removeTask, renderEditTaskModal, renderMoveTaskModal }) => {
     const { shouldRenderModal, renderModal, closeModal } = useRenderModal();
     const [renderDetailView, setRenderDetailView] = useState(false);
     return (
@@ -30,6 +29,7 @@ const TaskItem = ({ name, description, dueDate, priority, isComplete, editTask, 
                     <p className="task-item-date">{dueDate ? format(dueDate, "dd.MM.yyyy") : ""}</p>
                     <FiEdit className="task-item-edit-btn" onClick={renderEditTaskModal} />
                     <FiDelete className="task-item-remove-btn" onClick={renderModal} />
+                    <HiOutlineSwitchHorizontal className="task-item-move-btn" onClick={renderMoveTaskModal} />
                 </div>
                 {
                     renderDetailView && (description.length > 0)

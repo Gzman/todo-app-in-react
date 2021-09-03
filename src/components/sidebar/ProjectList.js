@@ -1,6 +1,6 @@
 import React from "react"
 import { Modal } from "../modal/Modal"
-import { ProjectForm } from "../modal/ProjectForm"
+import { ProjectForm } from "../forms/ProjectForm"
 import { ProjectItem } from "../project/ProjectItem"
 import { ColapseWrapper } from "../ui/ColapseWrapper"
 import { useRenderModal } from "../../hooks/useRenderModal"

@@ -2,12 +2,12 @@ import React from "react"
 import { ProjectControlls } from "./ProjectControlls"
 import { TaskItem } from "../task/TaskItem"
 import { Modal } from "../modal/Modal"
-import { TaskForm } from "../modal/TaskForm"
+import { TaskForm } from "../forms/TaskForm"
 import { useRenderModal } from "../../hooks/useRenderModal"
 import { TaskItems } from "../task/TaskItems"
 import "./Content.css"
 
-const ProjectView = ({ project, removeProject, addTask, editTask, removeTask, taskSorting }) => {
+const ProjectView = ({ project, projects, moveTask, removeProject, addTask, editTask, removeTask, taskSorting }) => {
     const {
         sortTasksAfterInsertion,
         sortTasksAfterName,
@@ -46,6 +46,8 @@ const ProjectView = ({ project, removeProject, addTask, editTask, removeTask, ta
                             project={project}
                             editTask={editTask}
                             removeTask={removeTask}
+                            projects={projects}
+                            moveTask={moveTask}
                         />
                     }
                 </div>

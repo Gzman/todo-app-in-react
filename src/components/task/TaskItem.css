@@ -19,8 +19,8 @@
 
 .task-item-normal-view {
   display: grid;
-  grid-template-columns: max-content 35% 18% max-content max-content;
-  gap: 0.75rem;
+  grid-template-columns: max-content auto 10ch max-content max-content max-content;
+  gap: 1rem;
   align-items: center;
   word-break: normal;
 }
@@ -37,18 +37,23 @@
   padding: 0.5rem;
   word-break: normal;
   background-color: white;
+  border-radius: 0.33rem;
 }
 
 .task-item-edit-btn,
-.task-item-remove-btn {
+.task-item-remove-btn,
+.task-item-move-btn {
   font-size: 1.25rem;
   color: var(--inactive);
+  cursor: pointer;
 }
 
 .task-item-edit-btn:hover,
 .task-item-remove-btn:hover,
+.task-item-move-btn:hover,
 .task-item-edit-btn:active,
-.task-item-remove-btn:active {
+.task-item-remove-btn:active,
+.task-item-move-btn:active {
   color: var(--active);
 }
 

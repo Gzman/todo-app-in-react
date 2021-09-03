@@ -3,7 +3,7 @@ import { ProjectItem } from "../project/ProjectItem"
 import { TaskItems } from "../task/TaskItems"
 import { filterMapping } from "../../buisnesslogic/filterTasks"
 
-const FilterView = ({ filter, projects, selectProject, editTask, removeTask }) => {
+const FilterView = ({ filter, projects, selectProject, editTask, removeTask, moveTask }) => {
     return (
         <div className="filter-view">
             <div className="filter-view-header">
@@ -22,8 +22,10 @@ const FilterView = ({ filter, projects, selectProject, editTask, removeTask }) =
                             <TaskItems
                                 key={`${project.id}${project.filterId}`}
                                 project={project}
+                                projects={projects}
                                 editTask={editTask}
                                 removeTask={removeTask}
+                                moveTask={moveTask}
                             />
                         </div>
                     )

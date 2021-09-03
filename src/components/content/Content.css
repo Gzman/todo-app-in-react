@@ -10,7 +10,7 @@
 }
 
 .project-view, .filter-view {
-    width: 880px;
+    max-width: 730px;
 }
 
 .project-controlls {

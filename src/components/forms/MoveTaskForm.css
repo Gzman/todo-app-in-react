@@ -1,0 +1,21 @@
+
+#move-task-form {
+    width: 360px;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.task-form-input {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.task-form-actions {
+    margin-top: 0.75rem;
+    align-self: flex-end;
+    display: flex;
+    gap: 0.5rem;
+}
