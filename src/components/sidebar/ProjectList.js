@@ -35,8 +35,8 @@ const ProjectList = ({ projects, selectedProjectId, selectProject, addProject, e
 
             <Modal title="New Project" render={shouldRenderModal} close={closeModal}>
                 <ProjectForm
-                    handleInSubmit={(...args) => {
-                        addProject(...args);
+                    handleInSubmit={(name) => {
+                        addProject(name);
                         closeModal();
                     }}
                     handleInCancel={closeModal}
