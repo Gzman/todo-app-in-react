@@ -6,7 +6,7 @@ import { ColapseWrapper } from "../ui/ColapseWrapper"
 import { useCurrentViewPort } from "../../hooks/useCurrentViewPort"
 import "./SideBar.css"
 
-const SideBar = ({ projects, selectedProjectId, selectProject, addProject, editProject, timeTaskFilter, hideProjectMenu }) => {
+const SideBar = ({ projects, selectedProjectId, selectProject, addProject, editProject, timeTaskFilter, hideProjectMenu, closeProjectMenu }) => {
     const viewPort = useCurrentViewPort();
     const sideBar = (
         <div className="sidebar">
@@ -26,6 +26,7 @@ const SideBar = ({ projects, selectedProjectId, selectProject, addProject, editP
                 selectProject={selectProject}
                 addProject={addProject}
                 editProject={editProject}
+                closeProjectMenu={closeProjectMenu}
             />
         </div>
     );

@@ -9,7 +9,7 @@ import "./SideBar.css"
 const isProjectCompleted = (project) => project.tasks.length > 0
     && project.tasks.every((task) => task.isComplete);
 
-const ProjectList = ({ projects, selectedProjectId, selectProject, addProject, editProject }) => {
+const ProjectList = ({ projects, selectedProjectId, selectProject, addProject, editProject, closeProjectMenu }) => {
     const { shouldRenderModal, renderModal, closeModal } = useRenderModal();
     return (
         <>
@@ -38,6 +38,7 @@ const ProjectList = ({ projects, selectedProjectId, selectProject, addProject, e
                     handleInSubmit={(name) => {
                         addProject(name);
                         closeModal();
+                        closeProjectMenu();
                     }}
                     handleInCancel={closeModal}
                 />

@@ -75,6 +75,7 @@ function App() {
             filterTasksThisMonth,
           }}
           hideProjectMenu={hideProjectMenu}
+          closeProjectMenu={closeProjectMenu}
         />
         <Content
           projects={projects}

@@ -12,7 +12,7 @@ import "./TaskItem.css"
 
 const TaskItem = ({ name, description, dueDate, priority, isComplete, editTask, removeTask, moveTask, projectId, projectList }) => {
     const [renderDetailView, setRenderDetailView] = useState(false);
-    const { vw: viewPortWidth } = useCurrentViewPort();
+    const viewPort = useCurrentViewPort();
 
     const {
         shouldRenderModal: shouldRenderEditModal,
@@ -58,7 +58,7 @@ const TaskItem = ({ name, description, dueDate, priority, isComplete, editTask, 
                     />
                     <p className="task-item-name" onClick={() => setRenderDetailView(render => !render)}>{name}</p>
                     <p className="task-item-date">{dueDate ? format(dueDate, "dd.MM.yyyy") : ""}</p>
-                    {viewPortWidth <= 411 ? renderDetailView && Actions : Actions}
+                    {viewPort.vw <= 500 ? renderDetailView && Actions : Actions}
                 </div>
                 {
                     renderDetailView && (description.length > 0)
