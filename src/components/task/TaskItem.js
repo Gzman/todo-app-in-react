@@ -5,14 +5,14 @@ import { RemoveModal} from "../modal/RemoveModal"
 import { TaskForm } from "../forms/TaskForm"
 import { MoveTaskForm } from "../forms/MoveTaskForm"
 import { useRenderModal } from "../../hooks/useRenderModal"
-import { useCurrentViewPort } from "../../hooks/useCurrentViewPort"
+import { useCurrentViewPortContext, smartphoneVw } from "../../context/currentViewPortContext"
 import { FiEdit, FiDelete } from "react-icons/fi"
 import { HiOutlineSwitchHorizontal } from "react-icons/hi"
 import "./TaskItem.css"
 
 const TaskItem = ({ name, description, dueDate, priority, isComplete, editTask, removeTask, moveTask, projectId, projectList }) => {
     const [renderDetailView, setRenderDetailView] = useState(false);
-    const viewPort = useCurrentViewPort();
+    const viewPort = useCurrentViewPortContext();
 
     const {
         shouldRenderModal: shouldRenderEditModal,
@@ -58,7 +58,7 @@ const TaskItem = ({ name, description, dueDate, priority, isComplete, editTask, 
                     />
                     <p className="task-item-name" onClick={() => setRenderDetailView(render => !render)}>{name}</p>
                     <p className="task-item-date">{dueDate ? format(dueDate, "dd.MM.yyyy") : ""}</p>
-                    {viewPort.vw <= 500 ? renderDetailView && Actions : Actions}
+                    {viewPort.vw <= smartphoneVw ? renderDetailView && Actions : Actions}
                 </div>
                 {
                     renderDetailView && (description.length > 0)
