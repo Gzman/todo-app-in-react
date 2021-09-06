@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { Header } from "./components/header/Header"
 import { SideBar } from "./components/sidebar/Sidebar"
 import { Content } from "./components/content/Content"
@@ -26,11 +26,6 @@ function App() {
     setCurrentProjectId,
   } = useProjects();
 
-  // const history = useHistory();
-  // useEffect(() => {
-  //   history.replace("/");
-  // }, []);
-
   const { navigateTo } = useNavigateContent();
 
   const [hideProjectMenu, setHideProjectMenu] = useState(true);
@@ -54,9 +49,6 @@ function App() {
     filterTasksThisWeek,
     filterTasksThisMonth
   } = useFilter(() => {
-    // history.replace("/filtered_results");
-    // setCurrentProjectId("");
-    // closeProjectMenu();
     navigateTo("/filtered_results", () => {
       setCurrentProjectId("");
       closeProjectMenu();

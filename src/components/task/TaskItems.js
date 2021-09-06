@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import { TaskItem } from "../task/TaskItem"
 
 const TaskItems = ({ project, projects, editTask, removeTask, moveTask }) => {
