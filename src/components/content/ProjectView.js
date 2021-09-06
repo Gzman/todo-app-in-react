@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { ProjectControlls } from "./ProjectControlls"
 import { Modal } from "../modal/Modal"
 import { TaskForm } from "../forms/TaskForm"
@@ -18,6 +18,10 @@ const ProjectView = ({ project, projects, moveTask, removeProject, addTask, edit
         shouldRenderModal,
         renderModal,
         closeModal } = useRenderModal();
+
+    useEffect(() => {
+        window.scrollTo(0,0);
+    }, []);
 
     if (!project) {
         return null;

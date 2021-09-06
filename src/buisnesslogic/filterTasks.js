@@ -1,3 +1,4 @@
+import { taskPriorities } from "./taskPriorities"
 import { format, getWeek, getMonth } from "date-fns"
 import uniqid from "uniqid"
 
@@ -51,9 +52,11 @@ const filterByThisDate = (projects, date) => {
     });
 }
 
+const [, , high] = taskPriorities;
+
 const filterCritical = (projects) => {
     return filterTasks(projects, (task) => {
-        return task.priority === "High";
+        return task.priority === high;
     });
 }
 

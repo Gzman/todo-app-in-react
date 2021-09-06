@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import { useTaskFormValidation } from "../../hooks/useTaskFormValidation"
+import { taskPriorities } from "../../buisnesslogic/taskPriorities"
 import { format } from "date-fns"
 import "./TaskForm.css"
 
@@ -69,9 +70,11 @@ const TaskForm = ({ handleInSubmit, handleInCancel, taskToEdit }) => {
                     onChange={(e) => setPriority(e.target.value)}
                     value={priority}
                 >
-                    <option>Low</option>
-                    <option>Medium</option>
-                    <option>High</option>
+                    {
+                        taskPriorities.map((priority, index) =>
+                            <option key={index}>{priority}</option>
+                        )
+                    }
                 </select>
             </div>
             <div className="task-form-actions">

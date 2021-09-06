@@ -1,10 +1,10 @@
-import React, { useState } from "react"
-import { useHistory } from "react-router-dom"
+import React, { useEffect, useState } from "react"
 import { Header } from "./components/header/Header"
 import { SideBar } from "./components/sidebar/Sidebar"
 import { Content } from "./components/content/Content"
 import { useProjects } from "./hooks/useProjects"
 import { useFilter } from "./hooks/useTaskFilter"
+import { useNavigateContent } from "./hooks/useNavigateContent"
 import "./App.css"
 
 function App() {
@@ -26,15 +26,21 @@ function App() {
     setCurrentProjectId,
   } = useProjects();
 
-  const history = useHistory();
+  // const history = useHistory();
+  // useEffect(() => {
+  //   history.replace("/");
+  // }, []);
+
+  const { navigateTo } = useNavigateContent();
 
   const [hideProjectMenu, setHideProjectMenu] = useState(true);
-  const closeProjectMenu = () => setHideProjectMenu(prev => !prev );
+  const closeProjectMenu = () => setHideProjectMenu(prev => !prev);
 
   const selectProject = (id) => {
-    history.replace("/");
-    setCurrentProjectId(id);
-    closeProjectMenu();
+    navigateTo("/", () => {
+      setCurrentProjectId(id);
+      closeProjectMenu();
+    });
   }
 
   const {
@@ -48,9 +54,13 @@ function App() {
     filterTasksThisWeek,
     filterTasksThisMonth
   } = useFilter(() => {
-    history.replace("/filtered_results");
-    setCurrentProjectId("");
-    closeProjectMenu();
+    // history.replace("/filtered_results");
+    // setCurrentProjectId("");
+    // closeProjectMenu();
+    navigateTo("/filtered_results", () => {
+      setCurrentProjectId("");
+      closeProjectMenu();
+    })
   });
 
   return (

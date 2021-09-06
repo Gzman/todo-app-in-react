@@ -1,14 +1,8 @@
 import { useEffect, useRef } from "react"
 
-const useLocalStorage = (key, data, initialData) => {
+const useLocalStorage = (key, data) => {
     const isMount = useRef(true);
-    const onlyOnUpdate = (callback) => {
-        if (isMount.current) {
-            isMount.current = false;
-        } else {
-            callback();
-        }
-    }
+    const onlyOnUpdate = (callback) => isMount.current ? isMount.current = false : callback();
 
     useEffect(() => {
         onlyOnUpdate(() => localStorage.setItem(key, JSON.stringify(data)))
@@ -20,13 +14,11 @@ const useLocalStorage = (key, data, initialData) => {
             return saved;
         } catch (err) {
             console.log(err);
-            return initialData;
+            return null;
         }
     }
 
-    return {
-        load,
-    }
+    return { load }
 }
 
 export { useLocalStorage }

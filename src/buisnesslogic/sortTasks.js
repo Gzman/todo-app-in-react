@@ -1,37 +1,72 @@
-const priorities = ["Low", "Medium", "High"];
+import { getPriorityWeight } from "./taskPriorities"
 
-const sortAfterName = (tasks) => {
-    return [...tasks]?.sort((a, b) => a.name.localeCompare(b.name));
+const sortAfterInsertion = (projects, projectId) => {
+    return projects?.map((project) =>
+        project.id === projectId
+            ? {
+                ...project, tasks: [...project.tasks]
+                    .sort((a, b) => a.timestamp - b.timestamp)
+            }
+            : project
+    );
 }
 
-const sortAfterDueDate = (tasks) => {
-    return [...tasks]?.sort((a, b) => {
-        if (!a.dueDate) return -1;
-        if (!b.dueDate) return 1;
-        return a.dueDate - b.dueDate;
-    });
+const sortAfterName = (projects, projectId) => {
+    return projects?.map((project) =>
+        project.id === projectId
+            ? {
+                ...project, tasks: [...project.tasks]
+                    .sort((a, b) => a.name.localeCompare(b.name))
+            }
+            : project
+    );
 }
 
-const sortAfterPriority = (tasks) => {
-    return [...tasks]?.sort((a, b) => {
-        const aPriorityWeight = priorities.indexOf(a.priority);
-        const bPriorityWeight = priorities.indexOf(b.priority);
-        return aPriorityWeight - bPriorityWeight;
-    });
+const sortAfterDate = (projects, projectId) => {
+    return projects?.map((project) =>
+        project.id === projectId
+            ? {
+                ...project, tasks: [...project.tasks]
+                    .sort((a, b) => {
+                        if (!a.dueDate) return 1;
+                        if (!b.dueDate) return -1;
+                        return a.dueDate - b.dueDate;
+                    })
+            }
+            : project
+    );
 }
 
-const sortAfterCompleted = (tasks) => {
-    return [...tasks]?.sort((a, b) => {
-        if (a.isComplete) return 1;
-        if (b.isComplete) return -1;
-        return 0;
-    });
+const sortAfterPriority = (projects, projectId) => {
+    return projects?.map((project) =>
+        project.id === projectId
+            ? {
+                ...project, tasks: [...project.tasks]
+                    .sort((a, b) => getPriorityWeight(b.priority) - getPriorityWeight(a.priority))
+            }
+            : project
+    );
+}
+
+const sortAfterComplete = (projects, projectId) => {
+    return projects?.map((project) =>
+        project.id === projectId
+            ? {
+                ...project, tasks: [...project.tasks]
+                    .sort((a, b) => {
+                        if (a.isComplete) return -1;
+                        if (b.isComplete) return 1;
+                    })
+            }
+            : project
+    );
 }
 
 
 export {
+    sortAfterInsertion,
     sortAfterName,
-    sortAfterDueDate,
+    sortAfterDate,
     sortAfterPriority,
-    sortAfterCompleted,
+    sortAfterComplete,
 }

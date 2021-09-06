@@ -1,46 +1,52 @@
 import { useEffect, useState } from "react"
 import { useLocalStorage } from "./useLocalStorage"
+import { add, edit, remove, addATask, editATask, moveATask, removeATask } from "../buisnesslogic/projects"
+import { sortAfterInsertion, sortAfterName, sortAfterDate, sortAfterPriority, sortAfterComplete } from "../buisnesslogic/sortTasks"
+import { createExampleProjects } from "../buisnesslogic/createExampleProjects"
 import uniqid from "uniqid"
 
+const DEFAULT = [
+    {
+        id: "inbox",
+        name: "Inbox",
+        tasks: [
+            {
+                id: uniqid(),
+                name: "Example Task",
+                description: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. ",
+                dueDate: new Date(),
+                priority: "Low",
+                isComplete: true,
+            }
+        ],
+    }
+];
+
+const convert = (serialized) => {
+    serialized?.forEach((project) => project.tasks
+        .forEach((task) => {
+            task.dueDate = task.dueDate ? new Date(task.dueDate) : null;
+        })
+    );
+    return serialized;
+}
+
 const useProjects = () => {
-    const initialProjects = [
-        {
-            id: "inbox",
-            name: "Inbox",
-            tasks: [
-                {
-                    id: "inboxTask",
-                    name: "Test",
-                    description: "Hier steht Blödsinn",
-                    dueDate: new Date("2021-07-11"),
-                    priority: "Medium",
-                    isComplete: true,
-                    timestamp: Date.now(),
-                },
-            ]
-        }
-    ]
     const [projects, setProjects] = useState([]);
-    const { load } = useLocalStorage("projects", projects, initialProjects);
+
+    const { load } = useLocalStorage("projects", projects);
 
     const [currentProjectId, setCurrentProjectId] = useState("inbox");
 
     useEffect(() => {
-        const savedProjects = load();
+        const savedProjects = convert(load());
         setProjects(
-            savedProjects !== null
-                ? savedProjects.map((project) => (
-                    {
-                        ...project,
-                        tasks: project.tasks.map((task) => (
-                            {
-                                ...task,
-                                dueDate: task.dueDate ? new Date(task.dueDate) : null,
-                            }
-                        )),
-                    }
-                ))
-                : initialProjects
+            savedProjects
+                ? savedProjects
+                : [
+                    ...DEFAULT,
+                    ...createExampleProjects(),
+                ]
         );
     }, []);
 
@@ -49,174 +55,59 @@ const useProjects = () => {
             projects => {
                 const id = uniqid();
                 setCurrentProjectId(id);
-                return [...projects, { id, name, tasks: [] }];
+                return add(projects, id, name);
             }
         );
     }
 
     const editProject = (id, name) => {
-        if (id === "inbox") return;
-        setProjects(projects =>
-            projects.map((project) => project.id === id
-                ? { ...project, name }
-                : project
-            ),
-        )
+        if (id === DEFAULT.id) return;
+        setProjects(projects => edit(projects, id, name));
     }
 
     const removeProject = (id) => {
-        if (id === "inbox") return;
-        setProjects(projects =>
-            projects.filter((project) => project.id !== id)
-        );
+        if (id === DEFAULT.id) return;
+        setProjects(projects => remove(projects, id));
     }
 
     const addTask = (projectId, name, description, dueDate, priority) => {
-        setProjects(
-            projects => projects.map((project) =>
-                project.id === projectId
-                    ? {
-                        ...project,
-                        tasks: [...project.tasks, {
-                            id: uniqid(),
-                            name,
-                            description,
-                            dueDate,
-                            priority,
-                            isComplete: false,
-                            timestamp: Date.now(),
-                        }],
-                    }
-                    : project
-            ),
+        setProjects(projects =>
+            addATask(projects, projectId, name, description, dueDate, priority)
         );
     }
 
     const editTask = (projectId, id, name, description, dueDate, priority, isComplete) => {
-        setProjects(
-            projects => projects.map((project) =>
-                project.id === projectId
-                    ? {
-                        ...project,
-                        tasks: project.tasks.map((task) =>
-                            task.id === id
-                                ? { ...task, name, description, dueDate, priority, isComplete }
-                                : task
-                        ),
-                    }
-                    : project
-            ),
+        setProjects(projects =>
+            editATask(projects, projectId, id, name, description, dueDate, priority, isComplete)
         );
     }
 
     const moveTask = (projectId, destinationId, id) => {
-        const taskToMove = {
-            ...projects.find((project) => project.id === projectId)
-                .tasks
-                .find((task) => task.id === id)
-        };
-        setProjects(
-            projects => projects.map((project) =>
-                project.id === projectId
-                    ? { ...project, tasks: project.tasks.filter((task) => task.id !== id) }
-                    : project
-            ).map((project) =>
-                project.id === destinationId
-                    ? {
-                        ...project,
-                        tasks: [...project.tasks, { ...taskToMove }]
-                    }
-                    : project
-            )
-        );
+        setProjects(projects => moveATask(projects, projectId, destinationId, id));
     }
 
     const removeTask = (projectId, id) => {
-        setProjects(
-            projects => projects.map((project) =>
-                project.id === projectId
-                    ? { ...project, tasks: project.tasks.filter((task) => task.id !== id) }
-                    : project
-            ),
-        );
+        setProjects(projects => removeATask(projects, projectId, id));
     }
 
     const sortTasksAfterInsertion = (projectId) => {
-        setProjects(
-            projects => projects.map((project) =>
-                project.id === projectId
-                    ? {
-                        ...project, tasks: [...project.tasks]
-                            .sort((a, b) => a.timestamp - b.timestamp)
-                    }
-                    : project
-            )
-        )
+        setProjects(projects => sortAfterInsertion(projects, projectId));
     }
 
     const sortTasksAfterName = (projectId) => {
-        setProjects(
-            projects => projects.map((project) =>
-                project.id === projectId
-                    ? {
-                        ...project, tasks: [...project.tasks]
-                            .sort((a, b) => a.name.localeCompare(b.name))
-                    }
-                    : project
-            )
-        );
+        setProjects(projects => sortAfterName(projects, projectId));
     }
 
     const sortTasksAfterDate = (projectId) => {
-        setProjects(
-            projects => projects.map((project) =>
-                project.id === projectId
-                    ? {
-                        ...project, tasks: [...project.tasks]
-                            .sort((a, b) => {
-                                if (!a.dueDate) return 1;
-                                if (!b.dueDate) return -1;
-                                return a.dueDate - b.dueDate;
-                            })
-                    }
-                    : project
-            )
-        )
+        setProjects(projects => sortAfterDate(projects, projectId))
     }
 
-    const priorities = ["Low", "Medium", "High"];
-
     const sortTasksAfterPriority = (projectId) => {
-        setProjects(
-            projects => projects.map((project) =>
-                project.id === projectId
-                    ? {
-                        ...project, tasks: [...project.tasks]
-                            .sort((a, b) => {
-                                const aPriorityWeight = priorities.indexOf(a.priority);
-                                const bPriorityWeight = priorities.indexOf(b.priority);
-                                return bPriorityWeight - aPriorityWeight;
-                            })
-                    }
-                    : project
-            )
-        )
+        setProjects(projects => sortAfterPriority(projects, projectId));
     }
 
     const sortTasksAfterComplete = (projectId) => {
-        setProjects(
-            projects => projects.map((project) =>
-                project.id === projectId
-                    ? {
-                        ...project, tasks: [...project.tasks]
-                            .sort((a, b) => {
-                                if (a.isComplete) return -1;
-                                if (b.isComplete) return 1;
-                            })
-                    }
-                    : project
-            )
-        )
+        setProjects(projects => sortAfterComplete(projects, projectId));
     }
 
     return {
