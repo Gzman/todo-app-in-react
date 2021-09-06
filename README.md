@@ -1,6 +1,6 @@
-#todo-app-in-react
+# todo-app-in-react
 
-A SPA to manage Tasks and group them in Projects, build with react.
+A SPA where you create Tasks, filter them or organize them in Projects - build with react.
 
 ## Live Demo
 "http://gzman.github.io/todo-app-in-react"
