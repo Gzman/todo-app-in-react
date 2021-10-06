@@ -1,28 +1,35 @@
-import React from "react"
+import React, { useState } from "react"
+import { useHistory } from "react-router-dom"
 import { Modal } from "../modal/Modal"
 import { ProjectForm } from "../forms/ProjectForm"
 import { ProjectItem } from "../project/ProjectItem"
 import { ColapseWrapper } from "../ui/ColapseWrapper"
 import { useRenderModal } from "../../hooks/useRenderModal"
+import { isComplete } from "../../buisnesslogic/projects"
+import { ROUTES } from "../../constants/routes"
+import { useProjectMenuContext } from "../../context/projectMenuContext"
 import "./SideBar.css"
 
-const isProjectCompleted = (project) => project.tasks.length > 0
-    && project.tasks.every((task) => task.isComplete);
-
-const ProjectList = ({ projects, selectedProjectId, selectProject, addProject, editProject, closeProjectMenu }) => {
+const ProjectList = ({ projects, addProject, editProject }) => {
+    const history = useHistory();
     const { shouldRenderModal, renderModal, closeModal } = useRenderModal();
+    const { setIsProjectMenuOpen } = useProjectMenuContext();
+    const [isColapsed, setIsColapsed] = useState(true);
     return (
         <>
-            <ColapseWrapper classes="project-list" title="Projects" initialyColapsed={true}>
+            <ColapseWrapper
+                classes="project-list"
+                title="Projects"
+                isColapsed={isColapsed}
+                setIsColapsed={() => setIsColapsed(prev => !prev)}
+            >
                 {
                     projects?.map((project) =>
-                        (project.id !== "inbox")
+                        (project.id !== "inbox" && !isComplete(project))
                         && < ProjectItem
                             key={project.id}
+                            id={project.id}
                             name={project.name}
-                            setAsSelected={() => selectProject(project.id)}
-                            active={project.id === selectedProjectId}
-                            isCompleted={isProjectCompleted(project)}
                             taskCount={project.tasks.length}
                             editProject={(name) => editProject(project.id, name)}
                         />
@@ -36,9 +43,10 @@ const ProjectList = ({ projects, selectedProjectId, selectProject, addProject, e
             <Modal title="New Project" render={shouldRenderModal} close={closeModal}>
                 <ProjectForm
                     handleInSubmit={(name) => {
-                        addProject(name);
+                        const id = addProject(name);
                         closeModal();
-                        closeProjectMenu();
+                        history.replace(`/${ROUTES.PROJECTS}/${id}`);
+                        setIsProjectMenuOpen(false);
                     }}
                     handleInCancel={closeModal}
                 />

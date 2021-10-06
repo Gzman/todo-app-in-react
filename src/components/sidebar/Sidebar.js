@@ -4,29 +4,25 @@ import { CompleteProjectList } from "./CompleteProjectList"
 import { ProjectList } from "./ProjectList"
 import { ColapseWrapper } from "../ui/ColapseWrapper"
 import { useCurrentViewPortContext, tabletVw } from "../../context/currentViewPortContext"
+import { useProjectMenuContext } from "../../context/projectMenuContext"
 import "./SideBar.css"
 
-const SideBar = ({ projects, selectedProjectId, selectProject, addProject, editProject, timeTaskFilter, hideProjectMenu, closeProjectMenu }) => {
+const SideBar = ({ projects, addProject, editProject }) => {
     const viewPort = useCurrentViewPortContext();
+    const { isProjectMenuOpen, setIsProjectMenuOpen } = useProjectMenuContext();
     const sideBar = (
         <div className="sidebar">
             <ProjectFilter
-                selectedProjectId={selectedProjectId}
-                selectProject={selectProject}
-                timeTaskFilter={timeTaskFilter}
+                editProject={editProject}
             />
             <CompleteProjectList
                 projects={projects}
-                selectedProjectId={selectedProjectId}
-                selectProject={selectProject}
+                editProject={editProject}
             />
             <ProjectList
                 projects={projects}
-                selectedProjectId={selectedProjectId}
-                selectProject={selectProject}
                 addProject={addProject}
                 editProject={editProject}
-                closeProjectMenu={closeProjectMenu}
             />
         </div>
     );
@@ -37,7 +33,8 @@ const SideBar = ({ projects, selectedProjectId, selectProject, addProject, editP
             : <ColapseWrapper
                 classes="project-menu-btn"
                 title="Projects"
-                close={hideProjectMenu}
+                isColapsed={isProjectMenuOpen}
+                setIsColapsed={() => setIsProjectMenuOpen(prev => !prev)}
             >
                 {sideBar}
             </ColapseWrapper>

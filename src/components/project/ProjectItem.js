@@ -1,12 +1,17 @@
 import React, { useState } from "react"
+import { NavLink } from "react-router-dom";
+import { ROUTES } from "../../constants/routes"
+import { useProjectMenuContext } from "../../context/projectMenuContext"
 import "./ProjectItem.css"
 
-const ProjectItem = ({ name, taskCount, active, isCompleted, setAsSelected, editProject }) => {
+const ProjectItem = ({ id, name, taskCount, isCompleted, editProject }) => {
     const [isEditAble, setIsEditAble] = useState(false);
+    const { setIsProjectMenuOpen } = useProjectMenuContext();
     return (
-        <div
-            className={`project-item ${active && "active"} ${isCompleted && "completed"}`}
-            onClick={setAsSelected}
+        <NavLink
+            className={`project-item ${isCompleted && "completed"} }`}
+            to={`/${ROUTES.PROJECTS}/${id}`}
+            onClick={() => setIsProjectMenuOpen(false)}
         >
             {
                 isEditAble
@@ -25,7 +30,7 @@ const ProjectItem = ({ name, taskCount, active, isCompleted, setAsSelected, edit
                     </p>
             }
             {taskCount !== null && (taskCount > 0) && <p className="project-item-task-counter">{taskCount}</p>}
-        </div>
+        </NavLink>
     )
 }
 

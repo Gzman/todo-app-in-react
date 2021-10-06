@@ -36,8 +36,6 @@ const useProjects = () => {
 
     const { load } = useLocalStorage("projects", projects);
 
-    const [currentProjectId, setCurrentProjectId] = useState("inbox");
-
     useEffect(() => {
         const savedProjects = convert(load());
         setProjects(
@@ -51,13 +49,9 @@ const useProjects = () => {
     }, []);
 
     const addProject = (name) => {
-        setProjects(
-            projects => {
-                const id = uniqid();
-                setCurrentProjectId(id);
-                return add(projects, id, name);
-            }
-        );
+        const id = uniqid();
+        setProjects(projects => add(projects, id, name));
+        return id;
     }
 
     const editProject = (id, name) => {
@@ -112,8 +106,6 @@ const useProjects = () => {
 
     return {
         projects,
-        currentProjectId,
-        setCurrentProjectId,
         addProject,
         editProject,
         removeProject,

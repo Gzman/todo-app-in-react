@@ -1,10 +1,8 @@
-import React, { useState } from "react"
+import React from "react"
 import { Header } from "./components/header/Header"
 import { SideBar } from "./components/sidebar/Sidebar"
 import { Content } from "./components/content/Content"
 import { useProjects } from "./hooks/useProjects"
-import { useFilter } from "./hooks/useTaskFilter"
-import { useNavigateContent } from "./hooks/useNavigateContent"
 import "./App.css"
 
 function App() {
@@ -22,67 +20,19 @@ function App() {
     sortTasksAfterDate,
     sortTasksAfterPriority,
     sortTasksAfterComplete,
-    currentProjectId,
-    setCurrentProjectId,
   } = useProjects();
-
-  const { navigateTo } = useNavigateContent();
-
-  const [hideProjectMenu, setHideProjectMenu] = useState(true);
-  const closeProjectMenu = () => setHideProjectMenu(prev => !prev);
-
-  const selectProject = (id) => {
-    navigateTo("/", () => {
-      setCurrentProjectId(id);
-      closeProjectMenu();
-    });
-  }
-
-  const {
-    filter,
-    filterTasksByText,
-    filterAllTasks,
-    filterCriticalTasks,
-    filterCompletedTasks,
-    filterExpiredTasks,
-    filterTasksToday,
-    filterTasksThisWeek,
-    filterTasksThisMonth
-  } = useFilter(() => {
-    navigateTo("/filtered_results", () => {
-      setCurrentProjectId("");
-      closeProjectMenu();
-    })
-  });
 
   return (
     <div className="App">
-      <Header
-        filterTasksByText={filterTasksByText}
-        filterAllTasks={filterAllTasks}
-        filterCriticalTasks={filterCriticalTasks}
-        filterCompletedTasks={filterCompletedTasks}
-        filterExpiredTasks={filterExpiredTasks}
-      />
+      <Header />
       <main>
         <SideBar
           projects={projects}
-          selectedProjectId={currentProjectId}
-          selectProject={selectProject}
           addProject={addProject}
           editProject={editProject}
-          timeTaskFilter={{
-            filterTasksToday,
-            filterTasksThisWeek,
-            filterTasksThisMonth,
-          }}
-          hideProjectMenu={hideProjectMenu}
-          closeProjectMenu={closeProjectMenu}
         />
         <Content
           projects={projects}
-          selectedProjectId={currentProjectId}
-          selectProject={selectProject}
           removeProject={removeProject}
           addTask={addTask}
           editTask={editTask}
@@ -95,7 +45,6 @@ function App() {
             sortTasksAfterPriority,
             sortTasksAfterComplete,
           }}
-          filter={filter}
         />
       </main>
     </div>

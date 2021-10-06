@@ -6,6 +6,8 @@
   gap: 1rem;
   border-radius: 8px;
   cursor: pointer;
+  text-decoration: none;
+  color: var(--black);
   font-weight: 500;
 }
 

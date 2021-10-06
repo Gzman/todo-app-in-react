@@ -1,4 +1,5 @@
 import React, { useEffect } from "react"
+import { useParams } from "react-router-dom"
 import { ProjectControlls } from "./ProjectControlls"
 import { Modal } from "../modal/Modal"
 import { TaskForm } from "../forms/TaskForm"
@@ -6,7 +7,10 @@ import { useRenderModal } from "../../hooks/useRenderModal"
 import { TaskItems } from "../task/TaskItems"
 import "./Content.css"
 
-const ProjectView = ({ project, projects, moveTask, removeProject, addTask, editTask, removeTask, taskSorting }) => {
+const ProjectView = ({ projects, moveTask, removeProject, addTask, editTask, removeTask, taskSorting }) => {
+    const { projectId } = useParams();
+    const project = projects.find((project) => project.id === projectId);
+    
     const {
         sortTasksAfterInsertion,
         sortTasksAfterName,
@@ -20,7 +24,7 @@ const ProjectView = ({ project, projects, moveTask, removeProject, addTask, edit
         closeModal } = useRenderModal();
 
     useEffect(() => {
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
     }, []);
 
     if (!project) {

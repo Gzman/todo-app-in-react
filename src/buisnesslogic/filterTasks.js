@@ -1,4 +1,5 @@
 import { taskPriorities } from "./taskPriorities"
+import { FILTER } from "../constants/filter"
 import { format, getWeek, getMonth } from "date-fns"
 import uniqid from "uniqid"
 
@@ -12,7 +13,7 @@ const filterTasks = (projects, filter) => {
     }, []);
 }
 
-const filterByText = (projects, text) => {
+const filterByText = (projects, text = "") => {
     const searchText = text.toLowerCase();
     return filterTasks(projects, (task) => {
         const dueDate = task.dueDate;
@@ -81,14 +82,14 @@ const filterAll = (projects) => {
 }
 
 const filterMapping = {
-    "filterTasksByText": filterByText,
-    "filterCriticalTasks": filterCritical,
-    "filterAllTasks": filterAll,
-    "filterCompletedTasks": filterCompleted,
-    "filterExpiredTasks": filterExpired,
-    "filterTasksToday": filterToday,
-    "filterTasksThisWeek": filterThisWeek,
-    "filterTasksThisMonth": filterThisMonth,
+    [FILTER.SEARCH.key]: filterByText,
+    [FILTER.CRITICAL.key]: filterCritical,
+    [FILTER.ALL.key]: filterAll,
+    [FILTER.COMPLETED.key]: filterCompleted,
+    [FILTER.EXPIRED.key]: filterExpired,
+    [FILTER.TODAY.key]: filterToday,
+    [FILTER.THIS_WEEK.key]: filterThisWeek,
+    [FILTER.THIS_MONTH.key]: filterThisMonth,
 }
 
 export {

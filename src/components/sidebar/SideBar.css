@@ -12,23 +12,22 @@
   flex-direction: column;
 }
 
-.project-filter > button {
+.project-filter-btn {
   padding: 0.5rem 0.75rem;
   display: flex;
   justify-content: space-between;
   cursor: pointer;
-  font-weight: 500;
   border: none;
   border-radius: 8px;
   font-size: 1rem;
   font-weight: 500;
 }
 
-.project-filter > button:hover {
+.project-filter-btn:hover {
   background-color: var(--light-grey);
 }
 
-.project-filter > button:active {
+.project-filter-btn:active {
   background-color: var(--light-grey);
 }
 

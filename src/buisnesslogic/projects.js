@@ -77,6 +77,8 @@ const removeATask = (projects, projectId, id) => {
     )
 }
 
+const isComplete = (project) => project.tasks.length > 0 && project.tasks.every((task) => task.isComplete);
+
 export {
     add,
     edit,
@@ -85,4 +87,5 @@ export {
     editATask,
     moveATask,
     removeATask,
+    isComplete,
 }
