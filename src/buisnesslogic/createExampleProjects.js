@@ -8,6 +8,7 @@ const randomDaysInTheFuture = (days) => {
 }
 
 const createExampleProjects = () => {
+    let n = 1;
     return [
         {
             id: uniqid(),
@@ -20,6 +21,7 @@ const createExampleProjects = () => {
                     dueDate: randomDaysInTheFuture(3),
                     priority: "Low",
                     isComplete: true,
+                    timestamp: Date.now() + n++,
                 },
                 {
                     id: uniqid(),
@@ -28,6 +30,7 @@ const createExampleProjects = () => {
                     dueDate: randomDaysInTheFuture(30),
                     priority: "High",
                     isComplete: false,
+                    timestamp: Date.now() + n++,
                 },
                 {
                     id: uniqid(),
@@ -36,6 +39,7 @@ const createExampleProjects = () => {
                     dueDate: randomDaysInTheFuture(60),
                     priority: "High",
                     isComplete: false,
+                    timestamp: Date.now() + n++,
                 },
             ]
         },
@@ -50,6 +54,7 @@ const createExampleProjects = () => {
                     dueDate: randomDaysInTheFuture(15),
                     priority: "Low",
                     isComplete: true,
+                    timestamp: Date.now() + n++,
                 },
                 {
                     id: uniqid(),
@@ -58,6 +63,7 @@ const createExampleProjects = () => {
                     dueDate: randomDaysInTheFuture(10),
                     priority: "Medium",
                     isComplete: true,
+                    timestamp: Date.now() + n++,
                 },
                 {
                     id: uniqid(),
@@ -66,6 +72,7 @@ const createExampleProjects = () => {
                     dueDate: randomDaysInTheFuture(11),
                     priority: "Low",
                     isComplete: true,
+                    timestamp: Date.now() + n++,
                 },
                 {
                     id: uniqid(),
@@ -74,6 +81,7 @@ const createExampleProjects = () => {
                     dueDate: randomDaysInTheFuture(30),
                     priority: "Low",
                     isComplete: false,
+                    timestamp: Date.now() + n++,
                 },
             ]
         },
@@ -88,6 +96,7 @@ const createExampleProjects = () => {
                     dueDate: randomDaysInTheFuture(44),
                     priority: "Low",
                     isComplete: false,
+                    timestamp: Date.now() + n++,
                 },
                 {
                     id: uniqid(),
@@ -96,6 +105,7 @@ const createExampleProjects = () => {
                     dueDate: randomDaysInTheFuture(33),
                     priority: "Low",
                     isComplete: false,
+                    timestamp: Date.now() + n++,
                 },
                 {
                     id: uniqid(),
@@ -104,6 +114,7 @@ const createExampleProjects = () => {
                     dueDate: randomDaysInTheFuture(19),
                     priority: "Medium",
                     isComplete: false,
+                    timestamp: Date.now() + n++,
                 },
                 {
                     id: uniqid(),
@@ -112,6 +123,7 @@ const createExampleProjects = () => {
                     dueDate: randomDaysInTheFuture(30),
                     priority: "Low",
                     isComplete: true,
+                    timestamp: Date.now() + n++,
                 },
                 {
                     id: uniqid(),
@@ -120,6 +132,7 @@ const createExampleProjects = () => {
                     dueDate: new Date("2021-03-11"),
                     priority: "High",
                     isComplete: false,
+                    timestamp: Date.now() + n++,
                 }
             ]
         },

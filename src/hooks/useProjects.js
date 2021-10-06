@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { useLocalStorage } from "./useLocalStorage"
 import { add, edit, remove, addATask, editATask, moveATask, removeATask } from "../buisnesslogic/projects"
-import { sortAfterInsertion, sortAfterName, sortAfterDate, sortAfterPriority, sortAfterComplete } from "../buisnesslogic/sortTasks"
 import { createExampleProjects } from "../buisnesslogic/createExampleProjects"
 import uniqid from "uniqid"
 
@@ -84,26 +83,6 @@ const useProjects = () => {
         setProjects(projects => removeATask(projects, projectId, id));
     }
 
-    const sortTasksAfterInsertion = (projectId) => {
-        setProjects(projects => sortAfterInsertion(projects, projectId));
-    }
-
-    const sortTasksAfterName = (projectId) => {
-        setProjects(projects => sortAfterName(projects, projectId));
-    }
-
-    const sortTasksAfterDate = (projectId) => {
-        setProjects(projects => sortAfterDate(projects, projectId))
-    }
-
-    const sortTasksAfterPriority = (projectId) => {
-        setProjects(projects => sortAfterPriority(projects, projectId));
-    }
-
-    const sortTasksAfterComplete = (projectId) => {
-        setProjects(projects => sortAfterComplete(projects, projectId));
-    }
-
     return {
         projects,
         addProject,
@@ -113,11 +92,6 @@ const useProjects = () => {
         editTask,
         removeTask,
         moveTask,
-        sortTasksAfterInsertion,
-        sortTasksAfterName,
-        sortTasksAfterDate,
-        sortTasksAfterPriority,
-        sortTasksAfterComplete,
     }
 }
 

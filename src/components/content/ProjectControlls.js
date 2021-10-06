@@ -4,16 +4,7 @@ import { RemoveModal } from "../modal/RemoveModal"
 import { useRenderModal } from "../../hooks/useRenderModal"
 import "./Content.css"
 
-const ProjectControlls = ({
-    projectName,
-    renderNewTask,
-    removeProject,
-    sortTasksAfterInsertion,
-    sortTasksAfterName,
-    sortTasksAfterDate,
-    sortTasksAfterPriority,
-    sortTasksAfterComplete,
-}) => {
+const ProjectControlls = ({ projectName, renderNewTask, removeProject, setSortKey }) => {
     const { shouldRenderModal, renderModal, closeModal } = useRenderModal();
     return (
         <div className="project-controlls">
@@ -23,13 +14,7 @@ const ProjectControlls = ({
             <button className="remove-project-btn" onClick={renderModal}>
                 Remove Project
             </button>
-            <TaskSort
-                sortAfterInsertion={sortTasksAfterInsertion}
-                sortAfterName={sortTasksAfterName}
-                sortAfterDate={sortTasksAfterDate}
-                sortAfterPriority={sortTasksAfterPriority}
-                sortAfterCompleted={sortTasksAfterComplete}
-            />
+            <TaskSort setSortKey={setSortKey} />
             <RemoveModal
                 itemName={projectName}
                 remove={removeProject}

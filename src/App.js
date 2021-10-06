@@ -15,11 +15,6 @@ function App() {
     editTask,
     removeTask,
     moveTask,
-    sortTasksAfterInsertion,
-    sortTasksAfterName,
-    sortTasksAfterDate,
-    sortTasksAfterPriority,
-    sortTasksAfterComplete,
   } = useProjects();
 
   return (
@@ -38,13 +33,6 @@ function App() {
           editTask={editTask}
           removeTask={removeTask}
           moveTask={moveTask}
-          taskSorting={{
-            sortTasksAfterInsertion,
-            sortTasksAfterName,
-            sortTasksAfterDate,
-            sortTasksAfterPriority,
-            sortTasksAfterComplete,
-          }}
         />
       </main>
     </div>

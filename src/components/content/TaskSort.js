@@ -1,17 +1,11 @@
 import React from "react"
+import { taskSorting } from "../../buisnesslogic/sortTasks"
 
-const TaskSort = ({ sortAfterInsertion, sortAfterName, sortAfterDate, sortAfterPriority, sortAfterCompleted }) => {
-    const taskSorting = {
-        "...": sortAfterInsertion,
-        "Name": sortAfterName,
-        "Date": sortAfterDate,
-        "Priority": sortAfterPriority,
-        "Completed": sortAfterCompleted,
-    }
+const TaskSort = ({ setSortKey }) => {
     return (
         <select
             className="task-sort-select"
-            onChange={(e) => taskSorting[e.target.value]?.()}
+            onChange={(e) => setSortKey(e.target.value) }
         >
             {
                 Object.keys(taskSorting).map((option) =>

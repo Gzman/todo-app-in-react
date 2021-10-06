@@ -3,10 +3,10 @@ import { Route, Switch, Redirect } from "react-router-dom"
 import { ProjectView } from "./ProjectView"
 import { FilterView } from "./FilterView"
 import { ROUTES } from "../../constants/routes"
-import "./Content.css"
 import { FILTER } from "../../constants/filter"
+import "./Content.css"
 
-const Content = ({ projects, removeProject, addTask, editTask, removeTask, moveTask, taskSorting }) => {
+const Content = ({ projects, removeProject, addTask, editTask, removeTask, moveTask }) => {
     return (
         <div className="content">
             <Switch>
@@ -24,7 +24,6 @@ const Content = ({ projects, removeProject, addTask, editTask, removeTask, moveT
                         editTask={editTask}
                         removeTask={removeTask}
                         moveTask={moveTask}
-                        taskSorting={taskSorting}
                     />
                 </Route>
                 <Route path={`/${ROUTES.FILTER}/:filterKey`}>

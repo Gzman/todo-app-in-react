@@ -1,27 +1,20 @@
-import React, { useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { ProjectControlls } from "./ProjectControlls"
 import { Modal } from "../modal/Modal"
 import { TaskForm } from "../forms/TaskForm"
 import { useRenderModal } from "../../hooks/useRenderModal"
 import { TaskItems } from "../task/TaskItems"
+import { DEFAULT_SORT } from "../../buisnesslogic/sortTasks"
 import "./Content.css"
 
-const ProjectView = ({ projects, moveTask, removeProject, addTask, editTask, removeTask, taskSorting }) => {
+const ProjectView = ({ projects, moveTask, removeProject, addTask, editTask, removeTask }) => {
     const { projectId } = useParams();
     const project = projects.find((project) => project.id === projectId);
-    
-    const {
-        sortTasksAfterInsertion,
-        sortTasksAfterName,
-        sortTasksAfterDate,
-        sortTasksAfterPriority,
-        sortTasksAfterComplete } = taskSorting;
 
-    const {
-        shouldRenderModal,
-        renderModal,
-        closeModal } = useRenderModal();
+    const [sortKey, setSortKey] = useState(DEFAULT_SORT);
+
+    const { shouldRenderModal, renderModal, closeModal } = useRenderModal();
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -40,11 +33,7 @@ const ProjectView = ({ projects, moveTask, removeProject, addTask, editTask, rem
                         projectName={project.name}
                         renderNewTask={renderModal}
                         removeProject={() => removeProject(project.id)}
-                        sortTasksAfterInsertion={() => sortTasksAfterInsertion(project.id)}
-                        sortTasksAfterName={() => sortTasksAfterName(project.id)}
-                        sortTasksAfterDate={() => sortTasksAfterDate(project.id)}
-                        sortTasksAfterPriority={() => sortTasksAfterPriority(project.id)}
-                        sortTasksAfterComplete={() => sortTasksAfterComplete(project.id)}
+                        setSortKey={setSortKey}
                     />
                 </div>
                 <div className="project-view-body">
@@ -54,6 +43,7 @@ const ProjectView = ({ projects, moveTask, removeProject, addTask, editTask, rem
                         removeTask={removeTask}
                         projects={projects}
                         moveTask={moveTask}
+                        sortKey={sortKey}
                     />
                 </div>
             </div>
